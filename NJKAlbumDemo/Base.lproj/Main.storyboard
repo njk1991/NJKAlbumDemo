@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +17,50 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UaP-cF-jHH">
+                                <rect key="frame" x="30" y="30" width="540" height="520"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8B-nd-4Vc">
+                                <rect key="frame" x="40" y="560" width="44" height="30"/>
+                                <state key="normal" title="Album"/>
+                                <connections>
+                                    <action selector="albumButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b4f-DG-tFY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3P-PI-lFz">
+                                <rect key="frame" x="192" y="560" width="84" height="30"/>
+                                <state key="normal" title="CloudAlbum"/>
+                                <connections>
+                                    <action selector="albumButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tCB-hf-PiW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s48-Oa-rSP">
+                                <rect key="frame" x="104" y="560" width="68" height="30"/>
+                                <state key="normal" title="OldAlbum"/>
+                                <connections>
+                                    <action selector="albumButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z9q-aX-3Fp"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s48-Oa-rSP" firstAttribute="top" secondItem="UaP-cF-jHH" secondAttribute="bottom" constant="10" id="7ZW-nw-XUm"/>
+                            <constraint firstItem="C3P-PI-lFz" firstAttribute="leading" secondItem="s48-Oa-rSP" secondAttribute="trailing" constant="20" id="AqR-RF-VsS"/>
+                            <constraint firstItem="s48-Oa-rSP" firstAttribute="leading" secondItem="l8B-nd-4Vc" secondAttribute="trailing" constant="20" id="OCO-yK-9zL"/>
+                            <constraint firstItem="C3P-PI-lFz" firstAttribute="centerY" secondItem="l8B-nd-4Vc" secondAttribute="centerY" id="Q9E-XT-gio"/>
+                            <constraint firstItem="UaP-cF-jHH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Xtn-pI-FYt"/>
+                            <constraint firstItem="l8B-nd-4Vc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="aGd-yE-heP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="s48-Oa-rSP" secondAttribute="bottom" constant="10" id="dVu-f3-85J"/>
+                            <constraint firstItem="UaP-cF-jHH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="fIz-We-EqH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UaP-cF-jHH" secondAttribute="trailing" constant="10" id="j8b-qw-q0L"/>
+                            <constraint firstItem="s48-Oa-rSP" firstAttribute="centerY" secondItem="l8B-nd-4Vc" secondAttribute="centerY" id="m5V-vi-2bz"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pickedImageView" destination="UaP-cF-jHH" id="WaK-zV-3hL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
