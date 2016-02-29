@@ -1,14 +1,16 @@
 //
-//  BaseAssetCell.h
-//  NJKAlbumDemo
+//  NJKImageCollectionViewCell.h
+//  NJKImagePickerDemo
 //
-//  Created by JiakaiNong on 16/2/25.
+//  Created by JiakaiNong on 16/2/4.
 //  Copyright © 2016年 poco. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface BaseAssetCell : UICollectionViewCell
+@class ALAsset;
+
+@interface NJKImageCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView *assetImageView;
 

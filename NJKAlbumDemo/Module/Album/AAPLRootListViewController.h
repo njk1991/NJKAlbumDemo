@@ -6,8 +6,10 @@
  The view controller displaying the root list of the app.
  */
 
+#import "BaseAlbumChooseController.h"
+
 @import UIKit;
 
-@interface AAPLRootListViewController : UITableViewController
+@interface AAPLRootListViewController : BaseAlbumChooseController
 
 @end

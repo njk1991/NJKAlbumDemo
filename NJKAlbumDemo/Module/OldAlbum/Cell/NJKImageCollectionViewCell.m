@@ -1,14 +1,19 @@
 //
-//  BaseAssetCell.m
-//  NJKAlbumDemo
+//  NJKImageCollectionViewCell.m
+//  NJKImagePickerDemo
 //
-//  Created by JiakaiNong on 16/2/25.
+//  Created by JiakaiNong on 16/2/4.
 //  Copyright © 2016年 poco. All rights reserved.
 //
 
-#import "BaseAssetCell.h"
+#import "NJKImageCollectionViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@implementation BaseAssetCell
+@interface NJKImageCollectionViewCell()
+
+@end
+
+@implementation NJKImageCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

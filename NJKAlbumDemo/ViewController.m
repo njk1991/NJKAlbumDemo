@@ -10,6 +10,7 @@
 #import "PickerNavigationController.h"
 #import "AlbumChooseController.h"
 #import "PhotoListViewController.h"
+#import "AAPLRootListViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pickedImageView;
@@ -35,13 +36,18 @@
 //    viewController.title = @"123";
 //    viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
     if ([sender.titleLabel.text isEqualToString:@"Album"]) {
-        viewController = [[AlbumChooseController alloc] init];
+//        viewController = [[AlbumChooseController alloc] init];
+        viewController = [[AAPLRootListViewController alloc] init];
     } else if ([sender.titleLabel.text isEqualToString:@"OldAlbum"]) {
         viewController = [[PhotoListViewController alloc] init];
     } else if ([sender.titleLabel.text isEqualToString:@"CloudAlbum"]) {
         
     }
-    PickerNavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
+//    PickerNavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
+    if (!viewController) {
+        return;
+    }
+    UINavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
     [self presentViewController:navigationController animated:YES completion:^{
         nil;
     }];

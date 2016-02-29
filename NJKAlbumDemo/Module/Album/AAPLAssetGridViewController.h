@@ -6,12 +6,13 @@
  A view controller displaying a grid of assets.
  */
 
+#import "BaseAssetChooseController.h"
+
 @import UIKit;
 @import Photos;
 
-@interface AAPLAssetGridViewController : UICollectionViewController
+@interface AAPLAssetGridViewController : BaseAssetChooseController
 
-@property (nonatomic, strong) PHFetchResult *assetsFetchResults;
 @property (nonatomic, strong) PHAssetCollection *assetCollection;
 
 @end

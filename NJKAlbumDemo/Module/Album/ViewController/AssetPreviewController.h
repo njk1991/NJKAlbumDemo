@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
+#import "BaseAssetPreviewController.h"
 
-@interface AssetPreviewController : UIViewController
+@interface AssetPreviewController : BaseAssetPreviewController
+
+@property (nonatomic, strong) PHFetchResult *assetsFetchResults;
 
 @end

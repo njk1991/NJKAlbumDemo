@@ -11,6 +11,7 @@
 @interface BaseAlbumCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *coverImageView;
+@property (nonatomic, strong) NSString *albumTitle;
 
 - (void)configCellWithCoverImage:(UIImage *)coverImage
                            title:(NSString *)title

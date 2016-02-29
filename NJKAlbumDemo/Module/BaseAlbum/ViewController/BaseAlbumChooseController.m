@@ -8,30 +8,52 @@
 
 #import "BaseAlbumChooseController.h"
 
-@interface BaseAlbumChooseController ()
+@interface BaseAlbumChooseController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
 @implementation BaseAlbumChooseController
 
+#pragma mark - UIViewController Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self initNavigationBar];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc {
 }
-*/
+
+- (void)initNavigationBar {
+    self.title = @"相簿";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemAction:)];
+}
+#pragma mark - UIBarButtonItem Action
+
+- (void)rightBarButtonItemAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        nil;
+    }];
+}
 
 @end

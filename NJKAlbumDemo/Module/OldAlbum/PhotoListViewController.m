@@ -31,12 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareForAssetGroup];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view addSubview:self.tableView];
-    [self initNavigationBar];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -58,18 +57,26 @@
 - (void)dealloc {
 }
 
-- (void)initNavigationBar {
-    self.title = @"相簿";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemAction:)];
-}
-
 - (void)prepareForAssetGroup {
+    
+    switch ([ALAssetsLibrary authorizationStatus]) {
+        case ALAuthorizationStatusRestricted:
+        case ALAuthorizationStatusDenied:
+        {
+            [[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"请在设备的\"设置-隐私-照片\"选项中，允许本程序访问你的手机相册"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
     [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
             if (group.numberOfAssets > 0) {
                 // 把相册储存到数组中，方便后面展示相册时使用
-                [self.groupArray addObject:group];
+                [self.groupArray insertObject:group atIndex:0];
             }
         } else {
             if ([self.groupArray count] > 0) {
@@ -86,35 +93,30 @@
 
 #pragma mark - UITableViewDataSource
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.groupArray.count;
+}
+
+- (OldAlbumCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    OldAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
+    [cell configCellWithCoverImage:[UIImage imageWithCGImage:((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]).posterImage]
+                             title:[((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]) valueForProperty:ALAssetsGroupPropertyName]
+                        imageCount:[((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]) numberOfAssets]];
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 86;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%@",self.groupArray);
-    return self.groupArray.count;
-}
+#pragma mark - UITableViewDelegate
 
-- (OldAlbumCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    OldAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
-//    cell.textLabel.text = [((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]) valueForProperty:ALAssetsGroupPropertyName];
-//    cell.imageView.image = [UIImage imageWithCGImage:((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]).posterImage];
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",[((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]) numberOfAssets]];
-    [cell configCellWithCoverImage:[UIImage imageWithCGImage:((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]).posterImage]
-                             title:[((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]) valueForProperty:ALAssetsGroupPropertyName]
-                        imageCount:[((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]) numberOfAssets]];
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PhotoViewController *vc=[[PhotoViewController alloc] init];
-    vc.group=((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.section]);
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    UIViewController *viewController = [[UIViewController alloc] init];
+//    viewController.view.backgroundColor = [UIColor redColor];
+    PhotoViewController *viewController = [[PhotoViewController alloc] init];
+    viewController.group = ((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]);
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -127,22 +129,29 @@
     }
 }
 
-#pragma mark - UIBarButtonItem Action
-
-- (void)rightBarButtonItemAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        nil;
-    }];
-}
-
 #pragma mark - Setter & Getter
+
+//- (UITableView *)tableView {
+//    if (!_tableView) {
+//        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+//        [_tableView registerClass:[OldAlbumCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
+//        _tableView.backgroundColor = [UIColor clearColor];
+//        _tableView.dataSource = self;
+//        _tableView.delegate = self;
+//    }
+//    return _tableView;
+//}
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
         [_tableView registerClass:[OldAlbumCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
-        _tableView.dataSource = self;
+        UIView *hiddenView =[ [UIView alloc]init];
+        hiddenView.backgroundColor = [UIColor clearColor];
+        [_tableView setTableFooterView:hiddenView];
         _tableView.delegate = self;
+        _tableView.dataSource = self;
     }
     return _tableView;
 }

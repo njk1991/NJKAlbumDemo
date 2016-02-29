@@ -34,6 +34,7 @@
                            title:(NSString *)title
                       imageCount:(NSInteger)imageCount {
     self.coverImageView.image = coverImage;
+    self.albumTitle = title;
     
     NSMutableAttributedString *detailAttributedString = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]}];
     if (imageCount) {
@@ -55,6 +56,7 @@
     self.coverImageView.frame = CGRectMake(imageViewPedding, imageViewPedding, imageViewWidth, imageViewWidth);
     
     CGFloat detailLabelPedding = 19;
+    self.detailLabel.frame = self.contentView.bounds;
     [self.detailLabel sizeToFit];
     self.detailLabel.frame = CGRectMake(CGRectGetMaxY(self.coverImageView.frame) + detailLabelPedding, (CGRectGetHeight(self.frame) - CGRectGetHeight(self.detailLabel.frame)) * 0.5, CGRectGetWidth(self.detailLabel.frame), CGRectGetHeight(self.detailLabel.frame));
 }

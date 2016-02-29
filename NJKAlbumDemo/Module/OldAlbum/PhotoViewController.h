@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-@interface PhotoViewController : UIViewController
+#import "BaseAssetChooseController.h"
+
+@interface PhotoViewController : BaseAssetChooseController
+
 @property ALAssetsGroup *group;
+
 @end

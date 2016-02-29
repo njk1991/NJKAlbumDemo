@@ -10,4 +10,7 @@
 
 @interface BaseAssetChooseController : UIViewController
 
+@property (nonatomic, strong) UICollectionViewFlowLayout *assetsFlowLayout;
+@property (nonatomic, strong) UICollectionView *imageCollectionView;
+
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseAlbumChooseController.h"
 
-@interface PhotoListViewController : UIViewController
+@interface PhotoListViewController : BaseAlbumChooseController
 
 @end

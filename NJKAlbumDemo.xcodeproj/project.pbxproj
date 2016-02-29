@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E317D1781C83FE5100F92418 /* AAPLAssetGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D1731C83FE5100F92418 /* AAPLAssetGridViewController.m */; };
+		E317D17A1C83FE5100F92418 /* AAPLRootListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D1771C83FE5100F92418 /* AAPLRootListViewController.m */; };
+		E317D1811C843D2E00F92418 /* CIImage+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D17C1C843D2E00F92418 /* CIImage+Convenience.m */; };
+		E317D1821C843D2E00F92418 /* NSIndexSet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D17E1C843D2E00F92418 /* NSIndexSet+Convenience.m */; };
+		E317D1831C843D2E00F92418 /* UICollectionView+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D1801C843D2E00F92418 /* UICollectionView+Convenience.m */; };
+		E317D1861C84414500F92418 /* OldAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D1851C84414500F92418 /* OldAssetCell.m */; };
+		E317D1891C84417700F92418 /* AssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D1881C84417700F92418 /* AssetCell.m */; };
+		E317D18D1C844E0700F92418 /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D18C1C844E0700F92418 /* VIPhotoView.m */; };
+		E317D1901C844E5F00F92418 /* OldAssetPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D18F1C844E5F00F92418 /* OldAssetPreviewCell.m */; };
+		E317D1931C844E6C00F92418 /* AssetPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D1921C844E6C00F92418 /* AssetPreviewCell.m */; };
+		E317D1961C844E9900F92418 /* OldAssetPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E317D1951C844E9900F92418 /* OldAssetPreviewController.m */; };
 		E32ABB6C1C805A12002DD2F1 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32ABB691C805A12002DD2F1 /* PhotoListViewController.m */; };
 		E32ABB6D1C805A12002DD2F1 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32ABB6B1C805A12002DD2F1 /* PhotoViewController.m */; };
 		E32ABB741C80670A002DD2F1 /* OldAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E32ABB731C80670A002DD2F1 /* OldAlbumCell.m */; };
@@ -53,6 +64,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E317D1721C83FE5100F92418 /* AAPLAssetGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLAssetGridViewController.h; sourceTree = "<group>"; };
+		E317D1731C83FE5100F92418 /* AAPLAssetGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLAssetGridViewController.m; sourceTree = "<group>"; };
+		E317D1761C83FE5100F92418 /* AAPLRootListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLRootListViewController.h; sourceTree = "<group>"; };
+		E317D1771C83FE5100F92418 /* AAPLRootListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLRootListViewController.m; sourceTree = "<group>"; };
+		E317D17B1C843D2E00F92418 /* CIImage+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIImage+Convenience.h"; sourceTree = "<group>"; };
+		E317D17C1C843D2E00F92418 /* CIImage+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIImage+Convenience.m"; sourceTree = "<group>"; };
+		E317D17D1C843D2E00F92418 /* NSIndexSet+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+Convenience.h"; sourceTree = "<group>"; };
+		E317D17E1C843D2E00F92418 /* NSIndexSet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+Convenience.m"; sourceTree = "<group>"; };
+		E317D17F1C843D2E00F92418 /* UICollectionView+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Convenience.h"; sourceTree = "<group>"; };
+		E317D1801C843D2E00F92418 /* UICollectionView+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Convenience.m"; sourceTree = "<group>"; };
+		E317D1841C84414500F92418 /* OldAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldAssetCell.h; sourceTree = "<group>"; };
+		E317D1851C84414500F92418 /* OldAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldAssetCell.m; sourceTree = "<group>"; };
+		E317D1871C84417700F92418 /* AssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetCell.h; sourceTree = "<group>"; };
+		E317D1881C84417700F92418 /* AssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetCell.m; sourceTree = "<group>"; };
+		E317D18B1C844E0700F92418 /* VIPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPhotoView.h; sourceTree = "<group>"; };
+		E317D18C1C844E0700F92418 /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
+		E317D18E1C844E5F00F92418 /* OldAssetPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldAssetPreviewCell.h; sourceTree = "<group>"; };
+		E317D18F1C844E5F00F92418 /* OldAssetPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldAssetPreviewCell.m; sourceTree = "<group>"; };
+		E317D1911C844E6C00F92418 /* AssetPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetPreviewCell.h; sourceTree = "<group>"; };
+		E317D1921C844E6C00F92418 /* AssetPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetPreviewCell.m; sourceTree = "<group>"; };
+		E317D1941C844E9900F92418 /* OldAssetPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldAssetPreviewController.h; path = NJKAlbumDemo/Module/Album/Cell/OldAssetPreviewController.h; sourceTree = SOURCE_ROOT; };
+		E317D1951C844E9900F92418 /* OldAssetPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldAssetPreviewController.m; path = NJKAlbumDemo/Module/Album/Cell/OldAssetPreviewController.m; sourceTree = SOURCE_ROOT; };
 		E32ABB681C805A12002DD2F1 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
 		E32ABB691C805A12002DD2F1 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
 		E32ABB6A1C805A12002DD2F1 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -132,11 +165,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E317D18A1C844E0700F92418 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E317D18B1C844E0700F92418 /* VIPhotoView.h */,
+				E317D18C1C844E0700F92418 /* VIPhotoView.m */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
 		E32ABB6F1C8066F7002DD2F1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				E32ABB721C80670A002DD2F1 /* OldAlbumCell.h */,
 				E32ABB731C80670A002DD2F1 /* OldAlbumCell.m */,
+				E317D1841C84414500F92418 /* OldAssetCell.h */,
+				E317D1851C84414500F92418 /* OldAssetCell.m */,
+				E317D18E1C844E5F00F92418 /* OldAssetPreviewCell.h */,
+				E317D18F1C844E5F00F92418 /* OldAssetPreviewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -151,6 +197,8 @@
 		E32ABB711C8066F7002DD2F1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E317D1941C844E9900F92418 /* OldAssetPreviewController.h */,
+				E317D1951C844E9900F92418 /* OldAssetPreviewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -178,6 +226,7 @@
 		E370E7B11C7EE2A200A26F03 /* NJKAlbumDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E317D18A1C844E0700F92418 /* Vendor */,
 				E3B2AC451C7EEA6E00CD69BD /* Function */,
 				E3B2AC3B1C7EE9C100CD69BD /* Module */,
 				E370E7B51C7EE2A200A26F03 /* AppDelegate.h */,
@@ -235,6 +284,16 @@
 		E3B2AC3C1C7EE9C100CD69BD /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				E317D17B1C843D2E00F92418 /* CIImage+Convenience.h */,
+				E317D17C1C843D2E00F92418 /* CIImage+Convenience.m */,
+				E317D17D1C843D2E00F92418 /* NSIndexSet+Convenience.h */,
+				E317D17E1C843D2E00F92418 /* NSIndexSet+Convenience.m */,
+				E317D17F1C843D2E00F92418 /* UICollectionView+Convenience.h */,
+				E317D1801C843D2E00F92418 /* UICollectionView+Convenience.m */,
+				E317D1721C83FE5100F92418 /* AAPLAssetGridViewController.h */,
+				E317D1731C83FE5100F92418 /* AAPLAssetGridViewController.m */,
+				E317D1761C83FE5100F92418 /* AAPLRootListViewController.h */,
+				E317D1771C83FE5100F92418 /* AAPLRootListViewController.m */,
 				E3B2AC6B1C7F1B8E00CD69BD /* Cell */,
 				E3B2AC6C1C7F1B8E00CD69BD /* DataSource */,
 				E3B2AC6D1C7F1B8E00CD69BD /* ViewController */,
@@ -308,6 +367,10 @@
 			children = (
 				E3B2AC991C7F22FA00CD69BD /* AlbumCell.h */,
 				E3B2AC9A1C7F22FA00CD69BD /* AlbumCell.m */,
+				E317D1871C84417700F92418 /* AssetCell.h */,
+				E317D1881C84417700F92418 /* AssetCell.m */,
+				E317D1911C844E6C00F92418 /* AssetPreviewCell.h */,
+				E317D1921C844E6C00F92418 /* AssetPreviewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -546,25 +609,36 @@
 			files = (
 				E3B2AC901C7F1C8600CD69BD /* BaseAlbumChooseController.m in Sources */,
 				E3B2AC951C7F1CBF00CD69BD /* BaseDataSource.m in Sources */,
+				E317D1831C843D2E00F92418 /* UICollectionView+Convenience.m in Sources */,
 				E3B2AC8E1C7F1C8600CD69BD /* BaseCollectionViewDataSource.m in Sources */,
 				E370E7BA1C7EE2A200A26F03 /* ViewController.m in Sources */,
 				E3B2AC731C7F1C4200CD69BD /* AssetChooseController.m in Sources */,
 				E3B2AC8C1C7F1C8600CD69BD /* BaseAssetCell.m in Sources */,
 				E32ABB6C1C805A12002DD2F1 /* PhotoListViewController.m in Sources */,
+				E317D1861C84414500F92418 /* OldAssetCell.m in Sources */,
 				E3B2AC761C7F1C5200CD69BD /* AssetPreviewController.m in Sources */,
 				E3B2AC981C7F1EBC00CD69BD /* AlbumChooseDataShource.m in Sources */,
+				E317D1821C843D2E00F92418 /* NSIndexSet+Convenience.m in Sources */,
 				E32ABB6D1C805A12002DD2F1 /* PhotoViewController.m in Sources */,
+				E317D1901C844E5F00F92418 /* OldAssetPreviewCell.m in Sources */,
+				E317D1931C844E6C00F92418 /* AssetPreviewCell.m in Sources */,
 				E3B2AC8F1C7F1C8600CD69BD /* BaseTableViewDataSource.m in Sources */,
 				E3B2AC8D1C7F1C8600CD69BD /* BaseAssetPreviewCell.m in Sources */,
 				E3B2AC921C7F1C8600CD69BD /* BaseAssetPreviewController.m in Sources */,
 				E3B2AC9B1C7F22FA00CD69BD /* AlbumCell.m in Sources */,
+				E317D18D1C844E0700F92418 /* VIPhotoView.m in Sources */,
+				E317D17A1C83FE5100F92418 /* AAPLRootListViewController.m in Sources */,
 				E3B2AC911C7F1C8600CD69BD /* BaseAssetChooseController.m in Sources */,
 				E3B2AC4E1C7EECD500CD69BD /* PickerNavigationController.m in Sources */,
 				E3B2AC701C7F1C3300CD69BD /* AlbumChooseController.m in Sources */,
 				E370E7B71C7EE2A200A26F03 /* AppDelegate.m in Sources */,
+				E317D1781C83FE5100F92418 /* AAPLAssetGridViewController.m in Sources */,
+				E317D1891C84417700F92418 /* AssetCell.m in Sources */,
+				E317D1961C844E9900F92418 /* OldAssetPreviewController.m in Sources */,
 				E3B2AC8B1C7F1C8600CD69BD /* BaseAlbumCell.m in Sources */,
 				E370E7B41C7EE2A200A26F03 /* main.m in Sources */,
 				E32ABB741C80670A002DD2F1 /* OldAlbumCell.m in Sources */,
+				E317D1811C843D2E00F92418 /* CIImage+Convenience.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
