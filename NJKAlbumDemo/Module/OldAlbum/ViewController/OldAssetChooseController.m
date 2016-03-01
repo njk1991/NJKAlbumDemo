@@ -27,12 +27,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //    适配iOS7导航栏
-    //    if (SYSTEM_VERSION >= 7.0f) {
-    //        self.edgesForExtendedLayout = UIRectEdgeBottom | UIRectEdgeLeft | UIRectEdgeRight;
-    //
-    //    }
-    
+    if (SYSTEM_VERSION >= 7.0f) {
+        self.edgesForExtendedLayout = UIRectEdgeBottom | UIRectEdgeLeft | UIRectEdgeRight;
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     [self prepareForAsset];
 }

@@ -37,12 +37,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self deselectRow];
+    [self deselectRow];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self deselectRow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

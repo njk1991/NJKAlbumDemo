@@ -90,7 +90,8 @@
 - (UICollectionView *)imageCollectionView {
     if (!_imageCollectionView) {
         _imageCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.assetsFlowLayout];
-        _imageCollectionView.backgroundColor = [UIColor clearColor];
+        _imageCollectionView.backgroundColor = [UIColor whiteColor];
+        _imageCollectionView.alwaysBounceVertical = YES;
         _imageCollectionView.dataSource = self;
         _imageCollectionView.delegate = self;
     }

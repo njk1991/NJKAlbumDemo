@@ -105,7 +105,6 @@
     PHFetchResult *assetFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
     if (assetFetchResult.count) {
         [self.groupArray addObject:collection];
-        NSLog(@"add");
     }
 }
 
@@ -115,7 +114,6 @@
         PHFetchResult *assetFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
         if (assetFetchResult.count) {
             [self.groupArray addObject:collection];
-            NSLog(@"add");
         }
     }
 }
