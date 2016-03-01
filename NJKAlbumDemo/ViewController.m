@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "PickerNavigationController.h"
-#import "AlbumChooseController.h"
+//#import "AlbumChooseController.h"
 #import "PhotoListViewController.h"
 #import "AAPLRootListViewController.h"
 

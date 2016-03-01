@@ -28,6 +28,7 @@
 //@property (nonatomic, strong) PHCachingImageManager *imageManager;
 @property (nonatomic, strong) NSMutableArray *groupArray;
 @property (nonatomic, strong) UITableView  *tableView;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -50,6 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self deselectRow];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -110,31 +112,45 @@
 //    creationDateAscendingOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     
     [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary];
-//    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumFavorites];
-//    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumRecentlyAdded];
-//    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumPanoramas];
-//    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumBursts];
-//    if (SYSTEM_VERSION >= 9.0) {
-//        [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumSelfPortraits];
-//        [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumScreenshots];
-//    }
-//    [self fetchTopLevelUserAlbums];
-    
+    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumFavorites];
+    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumRecentlyAdded];
+    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumPanoramas];
+    [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumBursts];
+    if (SYSTEM_VERSION >= 9.0) {
+        [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumSelfPortraits];
+        [self fetchSmartAlbumWithSubtype:PHAssetCollectionSubtypeSmartAlbumScreenshots];
+    }
+    [self fetchTopLevelUserAlbums];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 - (void)fetchSmartAlbumWithSubtype:(PHAssetCollectionSubtype)subtype {
-    PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:subtype options:nil];
-    PHAssetCollection *collection = fetchResult[0];
-    [self.groupArray addObject:collection];
-    [self.tableView reloadData];
+    PHFetchResult *collectionFetchResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:subtype options:nil];
+    PHAssetCollection *collection = collectionFetchResult[0];
+    PHFetchResult *assetFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
+    if (assetFetchResult.count) {
+        [self.groupArray addObject:collection];
+        NSLog(@"add");
+    }
 }
 
 - (void)fetchTopLevelUserAlbums {
     PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
     for (PHAssetCollection *collection in topLevelUserCollections) {
-        [self.groupArray addObject:collection];
+        PHFetchResult *assetFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
+        if (assetFetchResult.count) {
+            [self.groupArray addObject:collection];
+            NSLog(@"add");
+        }
     }
-    [self.tableView reloadData];
+}
+
+- (void)deselectRow {
+    if (_tableView && _selectedIndexPath) {
+        [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+    }
 }
 
 //#pragma mark - UIViewController
@@ -192,7 +208,6 @@
     PHAssetCollection *collection = self.groupArray[indexPath.row];
     PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
     PHAsset *asset = (PHAsset *)fetchResult[fetchResult.count - 1];
-//    PHAsset *asset = (PHAsset *)fetchResult[0];
     
     PHImageRequestOptions *fetchingOptions = [[PHImageRequestOptions alloc] init];
     fetchingOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
@@ -241,6 +256,9 @@
 //    }
     assetGridViewController.assetCollection = collection;
     [self.navigationController pushViewController:assetGridViewController animated:YES];
+    
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedIndexPath = indexPath;
 }
 
 //#pragma mark - PHPhotoLibraryChangeObserver

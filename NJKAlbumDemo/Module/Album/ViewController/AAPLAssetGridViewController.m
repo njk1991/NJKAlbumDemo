@@ -11,8 +11,8 @@
 #import "AssetCell.h"
 //#import "AAPLGridViewCell.h"
 //#import "AAPLAssetViewController.h"
-#import "NSIndexSet+Convenience.h"
-#import "UICollectionView+Convenience.h"
+//#import "NSIndexSet+Convenience.h"
+//#import "UICollectionView+Convenience.h"
 #import "AssetPreviewController.h"
 //#import "NJKImageCollectionViewCell.h"
 
@@ -217,10 +217,10 @@ static CGSize AssetGridThumbnailSize;
         NSMutableArray *removedIndexPaths = [NSMutableArray array];
         
         [self computeDifferenceBetweenRect:self.previousPreheatRect andRect:preheatRect removedHandler:^(CGRect removedRect) {
-            NSArray *indexPaths = [self.imageCollectionView aapl_indexPathsForElementsInRect:removedRect];
+            NSArray *indexPaths = [self indexPathsForElementsInRect:removedRect];
             [removedIndexPaths addObjectsFromArray:indexPaths];
         } addedHandler:^(CGRect addedRect) {
-            NSArray *indexPaths = [self.imageCollectionView aapl_indexPathsForElementsInRect:addedRect];
+            NSArray *indexPaths = [self indexPathsForElementsInRect:addedRect];
             [addedIndexPaths addObjectsFromArray:indexPaths];
         }];
         
@@ -311,6 +311,19 @@ static CGSize AssetGridThumbnailSize;
 //        }
 //    }];
 //}
+
+#pragma mark - Private Method
+
+- (NSArray *)indexPathsForElementsInRect:(CGRect)rect {
+    NSArray *allLayoutAttributes = [self.imageCollectionView.collectionViewLayout layoutAttributesForElementsInRect:rect];
+    if (allLayoutAttributes.count == 0) { return nil; }
+    NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:allLayoutAttributes.count];
+    for (UICollectionViewLayoutAttributes *layoutAttributes in allLayoutAttributes) {
+        NSIndexPath *indexPath = layoutAttributes.indexPath;
+        [indexPaths addObject:indexPath];
+    }
+    return indexPaths;
+}
 
 #pragma mark - Setter & Getter
 

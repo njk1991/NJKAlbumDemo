@@ -21,6 +21,7 @@
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
 @property (nonatomic, strong) NSMutableArray *groupArray;
 @property (nonatomic, strong) UITableView  *tableView;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -36,10 +37,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+//    [self deselectRow];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self deselectRow];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -91,6 +94,12 @@
     }];
 }
 
+- (void)deselectRow {
+    if (_tableView && _selectedIndexPath) {
+        [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -117,6 +126,8 @@
     PhotoViewController *viewController = [[PhotoViewController alloc] init];
     viewController.group = ((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]);
     [self.navigationController pushViewController:viewController animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];shi
+    self.selectedIndexPath = indexPath;
 }
 
 #pragma mark - UIAlertViewDelegate

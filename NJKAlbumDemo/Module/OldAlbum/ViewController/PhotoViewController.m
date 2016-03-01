@@ -135,7 +135,11 @@
 - (OldAssetCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     OldAssetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-    [cell configCellWithImage:[UIImage imageWithCGImage:((ALAsset *)[self.assetArray objectAtIndex:indexPath.row]).thumbnail]];
+    
+    ALAsset *asset = self.assetArray[indexPath.row];
+    UIImage *thumbnail = (asset.aspectRatioThumbnail == NULL) ? [UIImage imageWithCGImage:asset.thumbnail]: [UIImage imageWithCGImage:asset.aspectRatioThumbnail];
+//    [cell configCellWithImage:[UIImage imageWithCGImage:((ALAsset *)[self.assetArray objectAtIndex:indexPath.row]).thumbnail]];
+    [cell configCellWithImage:thumbnail];
 //    UIImageView *iv=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
 //    [cell.contentView addSubview:iv];
 //    iv.image=[UIImage imageWithCGImage:((ALAsset *)[self.assetArray objectAtIndex:indexPath.row]).thumbnail];
