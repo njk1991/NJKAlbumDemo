@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 coderyi. All rights reserved.
 //
 
-#import "PhotoListViewController.h"
+#import "OldAlbumChooseController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "PhotoViewController.h"
+#import "OldAssetChooseController.h"
 #import "OldAlbumCell.h"
 
 #define SYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
@@ -16,7 +16,7 @@
 #define SCREEN_HEIGHT self.view.bounds.size.height
 #define CELL_IDENTIFIER @"cellIdentifier"
 
-@interface PhotoListViewController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface OldAlbumChooseController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
 @property (nonatomic, strong) NSMutableArray *groupArray;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation PhotoListViewController
+@implementation OldAlbumChooseController
 
 #pragma mark - UIViewController Lifecycle
 
@@ -121,12 +121,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UIViewController *viewController = [[UIViewController alloc] init];
-//    viewController.view.backgroundColor = [UIColor redColor];
-    PhotoViewController *viewController = [[PhotoViewController alloc] init];
+    OldAssetChooseController *viewController = [[OldAssetChooseController alloc] init];
     viewController.group = ((ALAssetsGroup *)[self.groupArray objectAtIndex:indexPath.row]);
     [self.navigationController pushViewController:viewController animated:YES];
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];shi
     self.selectedIndexPath = indexPath;
 }
 
@@ -141,17 +138,6 @@
 }
 
 #pragma mark - Setter & Getter
-
-//- (UITableView *)tableView {
-//    if (!_tableView) {
-//        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
-//        [_tableView registerClass:[OldAlbumCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
-//        _tableView.backgroundColor = [UIColor clearColor];
-//        _tableView.dataSource = self;
-//        _tableView.delegate = self;
-//    }
-//    return _tableView;
-//}
 
 - (UITableView *)tableView {
     if (!_tableView) {

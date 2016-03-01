@@ -10,6 +10,6 @@
 
 @import UIKit;
 
-@interface AAPLRootListViewController : BaseAlbumChooseController
+@interface AlbumChooseController : BaseAlbumChooseController
 
 @end

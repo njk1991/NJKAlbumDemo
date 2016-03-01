@@ -56,35 +56,12 @@
     return self.assetsFetchResults.count;
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (AssetPreviewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AssetPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-//    cell.contentView.alpha = 0;
-    //    cell.contentScrollView.delegate = self;
-    //    cell.contentImageView.alpha = 0;mu
-//    AlbumObj *obj = self.assetArray[indexPath.row];
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        [[ImageDataAPI sharedInstance] getImageForPhotoObj:obj
-//                                                  withSize:self.view.bounds.size
-//                                                completion:^(BOOL ret, UIImage *image)
-//         {
-//             //         NSLog(@"%@",NSStringFromCGSize(cell.assetImageView.frame.size));
-//             dispatch_async(dispatch_get_main_queue(), ^{
-//                 cell.contentImage = image;
-//                 //                 [cell.contentScrollView setZoomScale:cell.contentScrollView.minimumZoomScale];
-//                 [UIView animateWithDuration:0.3 animations:^{
-//                     cell.contentView.alpha = 1;
-//                 }];
-//             });
-//         }];
-//    });
-//    NSInteger r = [UIScreen mainScreen].scale;
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    [options setSynchronous:NO]; // called exactly once
-    
+    [options setSynchronous:NO];
     PHAsset *asset = self.assetsFetchResults[indexPath.row];
-    
     [[PHCachingImageManager defaultManager] requestImageForAsset:asset
                             targetSize:CGSizeMake(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE)
                            contentMode:PHImageContentModeAspectFit

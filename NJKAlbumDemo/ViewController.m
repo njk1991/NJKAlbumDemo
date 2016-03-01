@@ -8,11 +8,12 @@
 
 #import "ViewController.h"
 #import "PickerNavigationController.h"
-//#import "AlbumChooseController.h"
-#import "PhotoListViewController.h"
-#import "AAPLRootListViewController.h"
+#import "OldAlbumChooseController.h"
+#import "AlbumChooseController.h"
+#import "AlbumNotification.h"
 
-@interface ViewController ()
+@interface ViewController () <AlbumNotificationReciever>
+
 @property (weak, nonatomic) IBOutlet UIImageView *pickedImageView;
 
 @end
@@ -21,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addNotification];
+    self.pickedImageView.contentMode = UIViewContentModeScaleAspectFit;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -29,21 +32,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [self removeNotification];
+}
+
 - (IBAction)albumButtonDidClick:(UIButton *)sender {
     UIViewController *viewController = nil;
-//    UIViewController *viewController = [[UIViewController alloc] init];
-//    viewController.view.backgroundColor = [UIColor greenColor];
-//    viewController.title = @"123";
-//    viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
     if ([sender.titleLabel.text isEqualToString:@"Album"]) {
-//        viewController = [[AlbumChooseController alloc] init];
-        viewController = [[AAPLRootListViewController alloc] init];
+        viewController = [[AlbumChooseController alloc] init];
     } else if ([sender.titleLabel.text isEqualToString:@"OldAlbum"]) {
-        viewController = [[PhotoListViewController alloc] init];
+        viewController = [[OldAlbumChooseController alloc] init];
     } else if ([sender.titleLabel.text isEqualToString:@"CloudAlbum"]) {
         
     }
-//    PickerNavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
     if (!viewController) {
         return;
     }
@@ -57,6 +58,20 @@
     [self dismissViewControllerAnimated:YES completion:^{
         nil;
     }];
+}
+
+#pragma mark - AlbumNotificationReciever
+
+- (void)addNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRecieveNotification:) name:ALBUM_DID_PICK_IMAGE_NOTIFICATION object:nil];
+}
+
+- (void)removeNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ALBUM_DID_PICK_IMAGE_NOTIFICATION];
+}
+
+- (void)didRecieveNotification:(NSNotification *)notification {
+    self.pickedImageView.image = notification.object;
 }
 
 @end

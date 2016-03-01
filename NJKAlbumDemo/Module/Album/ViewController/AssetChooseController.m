@@ -6,33 +6,32 @@
  A view controller displaying a grid of assets.
  */
 
-#import "AAPLAssetGridViewController.h"
+#import "AssetChooseController.h"
 
 #import "AssetCell.h"
-//#import "AAPLGridViewCell.h"
-//#import "AAPLAssetViewController.h"
-//#import "NSIndexSet+Convenience.h"
-//#import "UICollectionView+Convenience.h"
 #import "AssetPreviewController.h"
-//#import "NJKImageCollectionViewCell.h"
+#import "AlbumNotification.h"
+
+#define SCREEN_WIDTH self.view.bounds.size.width
+#define SCREEN_HEIGHT self.view.bounds.size.height
+#define SCREEN_SCALE [UIScreen mainScreen].scale
 
 @import PhotosUI;
 
 #define CELL_IDENTIFIER @"cellIdentifier"
 
-//@interface AAPLAssetGridViewController () <PHPhotoLibraryChangeObserver>
-@interface AAPLAssetGridViewController ()
-//@property (nonatomic, strong) IBOutlet UIBarButtonItem *addButton;
+@interface AssetChooseController () <AlbumNotificationPoster>
 @property (nonatomic, strong) PHFetchResult *assetsFetchResults;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
 @property (nonatomic, strong) NSMutableArray *assetArray;
+@property (nonatomic, strong) UIImage *pickedImage;
 @property CGRect previousPreheatRect;
+
 @end
 
 
-@implementation AAPLAssetGridViewController
+@implementation AssetChooseController
 
-//static NSString * const CellReuseIdentifier = @"Cell";
 static CGSize AssetGridThumbnailSize;
 
 #pragma mark - UIViewController Lifecycle
@@ -74,66 +73,6 @@ static CGSize AssetGridThumbnailSize;
 - (void)dealloc {
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    // Configure the destination AAPLAssetViewController.
-//    if ([segue.destinationViewController isKindOfClass:[AAPLAssetViewController class]]) {
-//        AAPLAssetViewController *assetViewController = segue.destinationViewController;
-//        NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
-//        assetViewController.asset = self.assetsFetchResults[indexPath.item];
-//        assetViewController.assetCollection = self.assetCollection;
-//    }
-//}
-
-#pragma mark - PHPhotoLibraryChangeObserver
-
-//- (void)photoLibraryDidChange:(PHChange *)changeInstance {
-//    // Check if there are changes to the assets we are showing.
-//    PHFetchResultChangeDetails *collectionChanges = [changeInstance changeDetailsForFetchResult:self.assetsFetchResults];
-//    if (collectionChanges == nil) {
-//        return;
-//    }
-//    
-//    /*
-//        Change notifications may be made on a background queue. Re-dispatch to the
-//        main queue before acting on the change as we'll be updating the UI.
-//     */
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        // Get the new fetch result.
-//        self.assetsFetchResults = [collectionChanges fetchResultAfterChanges];
-//        
-//        UICollectionView *collectionView = self.collectionView;
-//        
-//        if (![collectionChanges hasIncrementalChanges] || [collectionChanges hasMoves]) {
-//            // Reload the collection view if the incremental diffs are not available
-//            [collectionView reloadData];
-//            
-//        } else {
-//            /*
-//                Tell the collection view to animate insertions and deletions if we
-//                have incremental diffs.
-//             */
-//            [collectionView performBatchUpdates:^{
-//                NSIndexSet *removedIndexes = [collectionChanges removedIndexes];
-//                if ([removedIndexes count] > 0) {
-//                    [collectionView deleteItemsAtIndexPaths:[removedIndexes aapl_indexPathsFromIndexesWithSection:0]];
-//                }
-//                
-//                NSIndexSet *insertedIndexes = [collectionChanges insertedIndexes];
-//                if ([insertedIndexes count] > 0) {
-//                    [collectionView insertItemsAtIndexPaths:[insertedIndexes aapl_indexPathsFromIndexesWithSection:0]];
-//                }
-//                
-//                NSIndexSet *changedIndexes = [collectionChanges changedIndexes];
-//                if ([changedIndexes count] > 0) {
-//                    [collectionView reloadItemsAtIndexPaths:[changedIndexes aapl_indexPathsFromIndexesWithSection:0]];
-//                }
-//            } completion:NULL];
-//        }
-//        
-//        [self resetCachedAssets];
-//    });
-//}
-
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -141,34 +80,19 @@ static CGSize AssetGridThumbnailSize;
 }
 
 - (AssetCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
-
-    // Dequeue an AAPLGridViewCell.
     AssetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     cell.tag = indexPath.row;
-//    cell.representedAssetIdentifier = asset.localIdentifier;
     
-    // Add a badge to the cell if the PHAsset represents a Live Photo.
-//    if (asset.mediaSubtypes & PHAssetMediaSubtypePhotoLive) {
-//        // Add Badge Image to the cell to denote that the asset is a Live Photo.
-//        UIImage *badge = [PHLivePhotoView livePhotoBadgeImageWithOptions:PHLivePhotoBadgeOptionsOverContent];
-//        cell.livePhotoBadgeImage = badge;
-//    }
-    
-    // Request an image for the asset from the PHCachingImageManager.
+    PHAsset *asset = self.assetsFetchResults[indexPath.item];
     [self.imageManager requestImageForAsset:asset
-								 targetSize:AssetGridThumbnailSize
-								contentMode:PHImageContentModeAspectFill
-									options:nil
-							  resultHandler:^(UIImage *result, NSDictionary *info) {
-        // Set the cell's thumbnail image if it's still showing the same asset.
-//        if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
-//            cell.thumbnailImage = result;
-//        }
+                                 targetSize:AssetGridThumbnailSize
+                                contentMode:PHImageContentModeAspectFill
+                                    options:nil
+                              resultHandler:^(UIImage *result, NSDictionary *info) {
                                   if (cell.tag == indexPath.row) {
                                       [cell configCellWithImage:result];
                                   }
-    }];
+                              }];
     
     return cell;
 }
@@ -177,20 +101,57 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     AssetPreviewController *assetPreviewController = [[AssetPreviewController alloc] init];
-//    NSLog(@"%@",self.assetArray);
     assetPreviewController.assetsFetchResults = self.assetsFetchResults;
     assetPreviewController.currentIndex = indexPath.row;
     [self.navigationController pushViewController:assetPreviewController animated:YES];
+    [self handleImageWithIndexPath:indexPath];
 }
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // Update cached assets for the new visible area.
     [self updateCachedAssets];
 }
 
-#pragma mark - Asset Caching
+#pragma mark - AlbumNotificationPoster
+
+- (void)postNotificationWithObject:(id)object {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ALBUM_DID_PICK_IMAGE_NOTIFICATION object:object];
+}
+
+#pragma mark - Actions
+
+#pragma mark - Private Method
+
+- (NSArray *)indexPathsForElementsInRect:(CGRect)rect {
+    NSArray *allLayoutAttributes = [self.imageCollectionView.collectionViewLayout layoutAttributesForElementsInRect:rect];
+    if (allLayoutAttributes.count == 0) { return nil; }
+    NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:allLayoutAttributes.count];
+    for (UICollectionViewLayoutAttributes *layoutAttributes in allLayoutAttributes) {
+        NSIndexPath *indexPath = layoutAttributes.indexPath;
+        [indexPaths addObject:indexPath];
+    }
+    return indexPaths;
+}
+
+- (void)handleImageWithIndexPath:(NSIndexPath *)indexPath {
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    [options setSynchronous:NO]; // called exactly once
+    PHAsset *asset = self.assetsFetchResults[indexPath.row];
+    __weak __typeof(self)weakSelf = self;
+    [[PHCachingImageManager defaultManager] requestImageForAsset:asset
+                                                      targetSize:CGSizeMake(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE)
+                                                     contentMode:PHImageContentModeAspectFit
+                                                         options:options
+                                                   resultHandler:^(UIImage *result, NSDictionary *info)
+     {
+         __strong __typeof(weakSelf)strongSelf = weakSelf;
+         [strongSelf postNotificationWithObject:result];
+     }];
+}
+
+#pragma mark  Asset Caching
 
 - (void)resetCachedAssets {
     [self.imageManager stopCachingImagesForAllAssets];
@@ -206,8 +167,8 @@ static CGSize AssetGridThumbnailSize;
     preheatRect = CGRectInset(preheatRect, 0.0f, -0.5f * CGRectGetHeight(preheatRect));
     
     /*
-        Check if the collection view is showing an area that is significantly
-        different to the last preheated area.
+     Check if the collection view is showing an area that is significantly
+     different to the last preheated area.
      */
     CGFloat delta = ABS(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect));
     if (delta > CGRectGetHeight(self.imageCollectionView.bounds) / 2.0f) {
@@ -226,17 +187,17 @@ static CGSize AssetGridThumbnailSize;
         
         NSArray *assetsToStartCaching = [self assetsAtIndexPaths:addedIndexPaths];
         NSArray *assetsToStopCaching = [self assetsAtIndexPaths:removedIndexPaths];
-
+        
         // Update the assets the PHCachingImageManager is caching.
         [self.imageManager startCachingImagesForAssets:assetsToStartCaching
-											targetSize:AssetGridThumbnailSize
-										   contentMode:PHImageContentModeAspectFill
-											   options:nil];
+                                            targetSize:AssetGridThumbnailSize
+                                           contentMode:PHImageContentModeAspectFill
+                                               options:nil];
         [self.imageManager stopCachingImagesForAssets:assetsToStopCaching
-										   targetSize:AssetGridThumbnailSize
-										  contentMode:PHImageContentModeAspectFill
-											  options:nil];
-
+                                           targetSize:AssetGridThumbnailSize
+                                          contentMode:PHImageContentModeAspectFill
+                                              options:nil];
+        
         // Store the preheat rect to compare against in the future.
         self.previousPreheatRect = preheatRect;
     }
@@ -284,45 +245,6 @@ static CGSize AssetGridThumbnailSize;
     }
     
     return assets;
-}
-
-#pragma mark - Actions
-
-//- (IBAction)handleAddButtonItem:(id)sender {
-//    // Create a random dummy image.
-//    CGRect rect = rand() % 2 == 0 ? CGRectMake(0, 0, 400, 300) : CGRectMake(0, 0, 300, 400);
-//    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 1.0f);
-//    [[UIColor colorWithHue:(float)(rand() % 100) / 100 saturation:1.0 brightness:1.0 alpha:1.0] setFill];
-//    UIRectFillUsingBlendMode(rect, kCGBlendModeNormal);
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    
-//    // Add it to the photo library
-//    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-//        PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-//        
-//        if (self.assetCollection) {
-//            PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:self.assetCollection];
-//            [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
-//        }
-//    } completionHandler:^(BOOL success, NSError *error) {
-//        if (!success) {
-//            NSLog(@"Error creating asset: %@", error);
-//        }
-//    }];
-//}
-
-#pragma mark - Private Method
-
-- (NSArray *)indexPathsForElementsInRect:(CGRect)rect {
-    NSArray *allLayoutAttributes = [self.imageCollectionView.collectionViewLayout layoutAttributesForElementsInRect:rect];
-    if (allLayoutAttributes.count == 0) { return nil; }
-    NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:allLayoutAttributes.count];
-    for (UICollectionViewLayoutAttributes *layoutAttributes in allLayoutAttributes) {
-        NSIndexPath *indexPath = layoutAttributes.indexPath;
-        [indexPaths addObject:indexPath];
-    }
-    return indexPaths;
 }
 
 #pragma mark - Setter & Getter

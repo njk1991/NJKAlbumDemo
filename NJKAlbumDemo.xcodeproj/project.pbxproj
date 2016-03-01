@@ -18,8 +18,8 @@
 		E3CDE9D21C85678E006646BB /* AlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE98D1C85678E006646BB /* AlbumCell.m */; };
 		E3CDE9D31C85678E006646BB /* AssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE98F1C85678E006646BB /* AssetCell.m */; };
 		E3CDE9D41C85678E006646BB /* AssetPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9911C85678E006646BB /* AssetPreviewCell.m */; };
-		E3CDE9D71C85678E006646BB /* AAPLAssetGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9991C85678E006646BB /* AAPLAssetGridViewController.m */; };
-		E3CDE9D81C85678E006646BB /* AAPLRootListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE99B1C85678E006646BB /* AAPLRootListViewController.m */; };
+		E3CDE9D71C85678E006646BB /* AssetChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9991C85678E006646BB /* AssetChooseController.m */; };
+		E3CDE9D81C85678E006646BB /* AlbumChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE99B1C85678E006646BB /* AlbumChooseController.m */; };
 		E3CDE9DB1C85678E006646BB /* AssetPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9A11C85678E006646BB /* AssetPreviewController.m */; };
 		E3CDE9DC1C85678E006646BB /* BaseAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9A51C85678E006646BB /* BaseAlbumCell.m */; };
 		E3CDE9DD1C85678E006646BB /* BaseAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9A71C85678E006646BB /* BaseAssetCell.m */; };
@@ -30,8 +30,8 @@
 		E3CDE9E91C85678E006646BB /* OldAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9C31C85678E006646BB /* OldAlbumCell.m */; };
 		E3CDE9EA1C85678E006646BB /* OldAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9C51C85678E006646BB /* OldAssetCell.m */; };
 		E3CDE9EB1C85678E006646BB /* OldAssetPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9C71C85678E006646BB /* OldAssetPreviewCell.m */; };
-		E3CDE9ED1C85678E006646BB /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9CC1C85678E006646BB /* PhotoListViewController.m */; };
-		E3CDE9EE1C85678E006646BB /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9CE1C85678E006646BB /* PhotoViewController.m */; };
+		E3CDE9ED1C85678E006646BB /* OldAlbumChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9CC1C85678E006646BB /* OldAlbumChooseController.m */; };
+		E3CDE9EE1C85678E006646BB /* OldAssetChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9CE1C85678E006646BB /* OldAssetChooseController.m */; };
 		E3CDE9EF1C85678E006646BB /* PickerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9D11C85678E006646BB /* PickerNavigationController.m */; };
 		E3CDE9F51C8568FE006646BB /* OldAssetPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9F41C8568FE006646BB /* OldAssetPreviewController.m */; };
 		E3CDE9F81C856AA9006646BB /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9F71C856AA9006646BB /* VIPhotoView.m */; };
@@ -77,10 +77,10 @@
 		E3CDE98F1C85678E006646BB /* AssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetCell.m; sourceTree = "<group>"; };
 		E3CDE9901C85678E006646BB /* AssetPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetPreviewCell.h; sourceTree = "<group>"; };
 		E3CDE9911C85678E006646BB /* AssetPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetPreviewCell.m; sourceTree = "<group>"; };
-		E3CDE9981C85678E006646BB /* AAPLAssetGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLAssetGridViewController.h; sourceTree = "<group>"; };
-		E3CDE9991C85678E006646BB /* AAPLAssetGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLAssetGridViewController.m; sourceTree = "<group>"; };
-		E3CDE99A1C85678E006646BB /* AAPLRootListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLRootListViewController.h; sourceTree = "<group>"; };
-		E3CDE99B1C85678E006646BB /* AAPLRootListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLRootListViewController.m; sourceTree = "<group>"; };
+		E3CDE9981C85678E006646BB /* AssetChooseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetChooseController.h; sourceTree = "<group>"; };
+		E3CDE9991C85678E006646BB /* AssetChooseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetChooseController.m; sourceTree = "<group>"; };
+		E3CDE99A1C85678E006646BB /* AlbumChooseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumChooseController.h; sourceTree = "<group>"; };
+		E3CDE99B1C85678E006646BB /* AlbumChooseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumChooseController.m; sourceTree = "<group>"; };
 		E3CDE9A01C85678E006646BB /* AssetPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetPreviewController.h; sourceTree = "<group>"; };
 		E3CDE9A11C85678E006646BB /* AssetPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetPreviewController.m; sourceTree = "<group>"; };
 		E3CDE9A41C85678E006646BB /* BaseAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAlbumCell.h; sourceTree = "<group>"; };
@@ -101,16 +101,17 @@
 		E3CDE9C51C85678E006646BB /* OldAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldAssetCell.m; sourceTree = "<group>"; };
 		E3CDE9C61C85678E006646BB /* OldAssetPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldAssetPreviewCell.h; sourceTree = "<group>"; };
 		E3CDE9C71C85678E006646BB /* OldAssetPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldAssetPreviewCell.m; sourceTree = "<group>"; };
-		E3CDE9CB1C85678E006646BB /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
-		E3CDE9CC1C85678E006646BB /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
-		E3CDE9CD1C85678E006646BB /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
-		E3CDE9CE1C85678E006646BB /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		E3CDE9CB1C85678E006646BB /* OldAlbumChooseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldAlbumChooseController.h; sourceTree = "<group>"; };
+		E3CDE9CC1C85678E006646BB /* OldAlbumChooseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldAlbumChooseController.m; sourceTree = "<group>"; };
+		E3CDE9CD1C85678E006646BB /* OldAssetChooseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldAssetChooseController.h; sourceTree = "<group>"; };
+		E3CDE9CE1C85678E006646BB /* OldAssetChooseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldAssetChooseController.m; sourceTree = "<group>"; };
 		E3CDE9D01C85678E006646BB /* PickerNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerNavigationController.h; sourceTree = "<group>"; };
 		E3CDE9D11C85678E006646BB /* PickerNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerNavigationController.m; sourceTree = "<group>"; };
 		E3CDE9F31C8568FE006646BB /* OldAssetPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldAssetPreviewController.h; sourceTree = "<group>"; };
 		E3CDE9F41C8568FE006646BB /* OldAssetPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldAssetPreviewController.m; sourceTree = "<group>"; };
 		E3CDE9F61C856AA9006646BB /* VIPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPhotoView.h; sourceTree = "<group>"; };
 		E3CDE9F71C856AA9006646BB /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
+		E3CDEA011C857460006646BB /* AlbumNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumNotification.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +205,7 @@
 		E3CDE9891C85678E006646BB /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				E3CDE9FC1C856D60006646BB /* Notification */,
 				E3CDE98A1C85678E006646BB /* Album */,
 				E3CDE9A21C85678E006646BB /* BaseAlbum */,
 				E3CDE9BC1C85678E006646BB /* OldAlbum */,
@@ -237,10 +239,10 @@
 		E3CDE9971C85678E006646BB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E3CDE9981C85678E006646BB /* AAPLAssetGridViewController.h */,
-				E3CDE9991C85678E006646BB /* AAPLAssetGridViewController.m */,
-				E3CDE99A1C85678E006646BB /* AAPLRootListViewController.h */,
-				E3CDE99B1C85678E006646BB /* AAPLRootListViewController.m */,
+				E3CDE9981C85678E006646BB /* AssetChooseController.h */,
+				E3CDE9991C85678E006646BB /* AssetChooseController.m */,
+				E3CDE99A1C85678E006646BB /* AlbumChooseController.h */,
+				E3CDE99B1C85678E006646BB /* AlbumChooseController.m */,
 				E3CDE9A01C85678E006646BB /* AssetPreviewController.h */,
 				E3CDE9A11C85678E006646BB /* AssetPreviewController.m */,
 			);
@@ -311,10 +313,10 @@
 			children = (
 				E3CDE9F31C8568FE006646BB /* OldAssetPreviewController.h */,
 				E3CDE9F41C8568FE006646BB /* OldAssetPreviewController.m */,
-				E3CDE9CB1C85678E006646BB /* PhotoListViewController.h */,
-				E3CDE9CC1C85678E006646BB /* PhotoListViewController.m */,
-				E3CDE9CD1C85678E006646BB /* PhotoViewController.h */,
-				E3CDE9CE1C85678E006646BB /* PhotoViewController.m */,
+				E3CDE9CB1C85678E006646BB /* OldAlbumChooseController.h */,
+				E3CDE9CC1C85678E006646BB /* OldAlbumChooseController.m */,
+				E3CDE9CD1C85678E006646BB /* OldAssetChooseController.h */,
+				E3CDE9CE1C85678E006646BB /* OldAssetChooseController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -326,6 +328,14 @@
 				E3CDE9D11C85678E006646BB /* PickerNavigationController.m */,
 			);
 			path = PickerNavigator;
+			sourceTree = "<group>";
+		};
+		E3CDE9FC1C856D60006646BB /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				E3CDEA011C857460006646BB /* AlbumNotification.h */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,17 +476,17 @@
 				E3CDE9EB1C85678E006646BB /* OldAssetPreviewCell.m in Sources */,
 				E370E7BA1C7EE2A200A26F03 /* ViewController.m in Sources */,
 				E3CDE9E51C85678E006646BB /* BaseAssetPreviewController.m in Sources */,
-				E3CDE9D71C85678E006646BB /* AAPLAssetGridViewController.m in Sources */,
-				E3CDE9ED1C85678E006646BB /* PhotoListViewController.m in Sources */,
+				E3CDE9D71C85678E006646BB /* AssetChooseController.m in Sources */,
+				E3CDE9ED1C85678E006646BB /* OldAlbumChooseController.m in Sources */,
 				E3CDE9D41C85678E006646BB /* AssetPreviewCell.m in Sources */,
 				E3CDE9DD1C85678E006646BB /* BaseAssetCell.m in Sources */,
 				E3CDE9E31C85678E006646BB /* BaseAlbumChooseController.m in Sources */,
-				E3CDE9EE1C85678E006646BB /* PhotoViewController.m in Sources */,
+				E3CDE9EE1C85678E006646BB /* OldAssetChooseController.m in Sources */,
 				E3CDE9DC1C85678E006646BB /* BaseAlbumCell.m in Sources */,
 				E370E7B71C7EE2A200A26F03 /* AppDelegate.m in Sources */,
 				E3CDE9F51C8568FE006646BB /* OldAssetPreviewController.m in Sources */,
 				E3CDE9D31C85678E006646BB /* AssetCell.m in Sources */,
-				E3CDE9D81C85678E006646BB /* AAPLRootListViewController.m in Sources */,
+				E3CDE9D81C85678E006646BB /* AlbumChooseController.m in Sources */,
 				E370E7B41C7EE2A200A26F03 /* main.m in Sources */,
 				E3CDE9D21C85678E006646BB /* AlbumCell.m in Sources */,
 				E3CDE9EF1C85678E006646BB /* PickerNavigationController.m in Sources */,

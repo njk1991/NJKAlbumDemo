@@ -11,7 +11,7 @@
 @import UIKit;
 @import Photos;
 
-@interface AAPLAssetGridViewController : BaseAssetChooseController
+@interface AssetChooseController : BaseAssetChooseController
 
 @property (nonatomic, strong) PHAssetCollection *assetCollection;
 

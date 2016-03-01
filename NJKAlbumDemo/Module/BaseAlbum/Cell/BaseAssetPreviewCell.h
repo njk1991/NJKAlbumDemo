@@ -13,6 +13,5 @@
 @interface BaseAssetPreviewCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImage *contentImage;
-//@property (nonatomic, strong) VIPhotoView *photoView;
 
 @end

@@ -10,7 +10,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "BaseAssetChooseController.h"
 
-@interface PhotoViewController : BaseAssetChooseController
+@interface OldAssetChooseController : BaseAssetChooseController
 
 @property ALAssetsGroup *group;
 
