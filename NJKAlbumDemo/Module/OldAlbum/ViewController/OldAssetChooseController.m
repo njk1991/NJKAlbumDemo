@@ -27,10 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (SYSTEM_VERSION >= 7.0f) {
-        self.edgesForExtendedLayout = UIRectEdgeBottom | UIRectEdgeLeft | UIRectEdgeRight;
-    }
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     [self prepareForAsset];
 }
 
@@ -102,15 +99,6 @@
     [self dismissViewControllerAnimated:YES completion:^{
         nil;
     }];
-}
-
-#pragma mark - Setter & Getter
-
-- (NSMutableArray *)assetArray {
-    if (!_assetArray) {
-        _assetArray = [@[] mutableCopy];
-    }
-    return _assetArray;
 }
 
 @end

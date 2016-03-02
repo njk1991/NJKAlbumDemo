@@ -19,8 +19,6 @@
 @interface OldAlbumChooseController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
-@property (nonatomic, strong) NSMutableArray *groupArray;
-@property (nonatomic, strong) UITableView  *tableView;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
@@ -32,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareForAssetGroup];
-    [self.view addSubview:self.tableView];
+    [self.tableView registerClass:[OldAlbumCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,7 +92,7 @@
 }
 
 - (void)deselectRow {
-    if (_tableView && _selectedIndexPath) {
+    if (self.tableView && _selectedIndexPath) {
         [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
     }
 }
@@ -138,32 +136,11 @@
 
 #pragma mark - Setter & Getter
 
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor clearColor];
-        [_tableView registerClass:[OldAlbumCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
-        UIView *hiddenView =[ [UIView alloc]init];
-        hiddenView.backgroundColor = [UIColor clearColor];
-        [_tableView setTableFooterView:hiddenView];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
-}
-
 - (ALAssetsLibrary *)assetsLibrary {
     if (!_assetsLibrary) {
         _assetsLibrary = [[ALAssetsLibrary alloc] init];
     }
     return _assetsLibrary;
-}
-
-- (NSMutableArray *)groupArray {
-    if (!_groupArray) {
-        _groupArray = [[NSMutableArray alloc] init];
-    }
-    return _groupArray;
 }
 
 @end

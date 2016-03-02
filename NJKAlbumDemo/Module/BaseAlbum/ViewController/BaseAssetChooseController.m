@@ -31,6 +31,7 @@
 }
 
 - (void)viewDidLayoutSubviews {
+    self.imageCollectionView.frame = self.view.bounds;
     [self scrollToNewestItem];
 }
 
@@ -90,12 +91,19 @@
 - (UICollectionView *)imageCollectionView {
     if (!_imageCollectionView) {
         _imageCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.assetsFlowLayout];
-        _imageCollectionView.backgroundColor = [UIColor whiteColor];
+        _imageCollectionView.backgroundColor = [UIColor clearColor];
         _imageCollectionView.alwaysBounceVertical = YES;
         _imageCollectionView.dataSource = self;
         _imageCollectionView.delegate = self;
     }
     return _imageCollectionView;
+}
+
+- (NSMutableArray *)assetArray {
+    if (!_assetArray) {
+        _assetArray = [@[] mutableCopy];
+    }
+    return _assetArray;
 }
 
 @end

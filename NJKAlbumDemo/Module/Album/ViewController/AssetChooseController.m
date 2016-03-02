@@ -24,7 +24,6 @@
 @interface AssetChooseController () <AlbumNotificationPoster>
 @property (nonatomic, strong) PHFetchResult *assetsFetchResults;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
-@property (nonatomic, strong) NSMutableArray *assetArray;
 @property (nonatomic, strong) UIImage *pickedImage;
 @property CGRect previousPreheatRect;
 
@@ -39,9 +38,6 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (SYSTEM_VERSION >= 7.0f) {
-        self.edgesForExtendedLayout = UIRectEdgeBottom | UIRectEdgeLeft | UIRectEdgeRight;
-    }
     [self resetCachedAssets];
 }
 

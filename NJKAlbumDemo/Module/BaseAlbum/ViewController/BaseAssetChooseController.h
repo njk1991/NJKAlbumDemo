@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface BaseAssetChooseController : UIViewController
+@interface BaseAssetChooseController : BaseViewController
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *assetsFlowLayout;
 @property (nonatomic, strong) UICollectionView *imageCollectionView;
+@property (nonatomic, strong) NSMutableArray *assetArray;
 
 @end

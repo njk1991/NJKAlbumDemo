@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface BaseAlbumChooseController : UIViewController
+@interface BaseAlbumChooseController : BaseViewController
+
+@property (nonatomic, strong) UITableView  *tableView;
+@property (nonatomic, strong) NSMutableArray *groupArray;
 
 @end

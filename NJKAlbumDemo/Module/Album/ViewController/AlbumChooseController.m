@@ -20,8 +20,6 @@
 
 @interface AlbumChooseController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *groupArray;
-@property (nonatomic, strong) UITableView  *tableView;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
@@ -33,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareForAssetGroup];
-    [self.view addSubview:self.tableView];
+    [self.tableView registerClass:[AlbumCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -119,7 +117,7 @@
 }
 
 - (void)deselectRow {
-    if (_tableView && _selectedIndexPath) {
+    if (self.tableView && _selectedIndexPath) {
         [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
     }
 }
@@ -176,29 +174,6 @@
     if (buttonIndex == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-#pragma mark - Setter & Getter
-
-- (NSMutableArray *)groupArray {
-    if (!_groupArray) {
-        _groupArray = [@[] mutableCopy];
-    }
-    return _groupArray;
-}
-
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor clearColor];
-        [_tableView registerClass:[AlbumCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
-        UIView *hiddenView =[ [UIView alloc]init];
-        hiddenView.backgroundColor = [UIColor clearColor];
-        [_tableView setTableFooterView:hiddenView];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
 }
 
 @end

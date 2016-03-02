@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface BaseAssetPreviewController : UIViewController
+@interface BaseAssetPreviewController : BaseViewController
 
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, strong) NSArray *assetArray;

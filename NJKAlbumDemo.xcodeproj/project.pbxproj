@@ -35,6 +35,7 @@
 		E3CDE9EF1C85678E006646BB /* PickerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9D11C85678E006646BB /* PickerNavigationController.m */; };
 		E3CDE9F51C8568FE006646BB /* OldAssetPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9F41C8568FE006646BB /* OldAssetPreviewController.m */; };
 		E3CDE9F81C856AA9006646BB /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9F71C856AA9006646BB /* VIPhotoView.m */; };
+		E3CDEA041C857EC4006646BB /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDEA031C857EC4006646BB /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,8 @@
 		E3CDE9F61C856AA9006646BB /* VIPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPhotoView.h; sourceTree = "<group>"; };
 		E3CDE9F71C856AA9006646BB /* VIPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPhotoView.m; sourceTree = "<group>"; };
 		E3CDEA011C857460006646BB /* AlbumNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumNotification.h; sourceTree = "<group>"; };
+		E3CDEA021C857EC4006646BB /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		E3CDEA031C857EC4006646BB /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +285,8 @@
 				E3CDE9B71C85678E006646BB /* BaseAssetChooseController.m */,
 				E3CDE9B81C85678E006646BB /* BaseAssetPreviewController.h */,
 				E3CDE9B91C85678E006646BB /* BaseAssetPreviewController.m */,
+				E3CDEA021C857EC4006646BB /* BaseViewController.h */,
+				E3CDEA031C857EC4006646BB /* BaseViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3CDE9EA1C85678E006646BB /* OldAssetCell.m in Sources */,
+				E3CDEA041C857EC4006646BB /* BaseViewController.m in Sources */,
 				E3CDE9DE1C85678E006646BB /* BaseAssetPreviewCell.m in Sources */,
 				E3CDE9E41C85678E006646BB /* BaseAssetChooseController.m in Sources */,
 				E3CDE9E91C85678E006646BB /* OldAlbumCell.m in Sources */,
@@ -630,7 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NJKAlbumDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.poco.NJKAlbumDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,7 +648,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NJKAlbumDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.poco.NJKAlbumDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
