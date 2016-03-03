@@ -10,9 +10,6 @@
 #import "AssetChooseController.h"
 #import "AlbumCell.h"
 
-#define SYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
-#define SCREEN_WIDTH self.view.bounds.size.width
-#define SCREEN_HEIGHT self.view.bounds.size.height
 #define CELL_IDENTIFIER @"cellIdentifier"
 
 @import Photos;

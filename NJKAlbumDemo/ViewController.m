@@ -48,7 +48,9 @@
     if (!viewController) {
         return;
     }
-    UINavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
+    PickerNavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
+    navigationController.multiPicker = YES;
+    navigationController.maximumPickCount = 10;
     [self presentViewController:navigationController animated:YES completion:^{
         nil;
     }];

@@ -67,6 +67,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         self.delegate = self;
         self.bouncesZoom = YES;
         self.showsHorizontalScrollIndicator = NO;

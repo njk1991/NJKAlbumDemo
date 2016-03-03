@@ -8,6 +8,10 @@
 
 #import "BaseAssetCell.h"
 
+@protocol OldAssetCellDelegate <NSObject, BaseAssetCellDelegate>
+
+@end
+
 @interface OldAssetCell : BaseAssetCell
 
 @end

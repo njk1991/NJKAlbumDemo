@@ -10,4 +10,9 @@
 
 @interface PickerNavigationController : UINavigationController
 
+@property (nonatomic, assign) UIEdgeInsets contentViewInsets;
+@property (nonatomic, assign, getter = isMultiPicker) BOOL multiPicker;
+@property (nonatomic, assign) NSInteger maximumPickCount;
+@property (nonatomic, strong) NSMutableArray *pickedImageArray;
+
 @end

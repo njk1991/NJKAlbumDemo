@@ -36,6 +36,23 @@
 		E3CDE9F51C8568FE006646BB /* OldAssetPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9F41C8568FE006646BB /* OldAssetPreviewController.m */; };
 		E3CDE9F81C856AA9006646BB /* VIPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDE9F71C856AA9006646BB /* VIPhotoView.m */; };
 		E3CDEA041C857EC4006646BB /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CDEA031C857EC4006646BB /* BaseViewController.m */; };
+		E3D364D81C88141F003ACA53 /* AlbumBottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364CA1C88141F003ACA53 /* AlbumBottomBar.png */; };
+		E3D364D91C88141F003ACA53 /* AlbumChoosePlus.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364CB1C88141F003ACA53 /* AlbumChoosePlus.png */; };
+		E3D364DA1C88141F003ACA53 /* AlbumChoosePlus_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364CC1C88141F003ACA53 /* AlbumChoosePlus_hover.png */; };
+		E3D364DB1C88141F003ACA53 /* AlbumDeletePrune.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364CD1C88141F003ACA53 /* AlbumDeletePrune.png */; };
+		E3D364DC1C88141F003ACA53 /* AlbumDeletePrune_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364CE1C88141F003ACA53 /* AlbumDeletePrune_hover.png */; };
+		E3D364DD1C88141F003ACA53 /* AlbumMagnifyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364CF1C88141F003ACA53 /* AlbumMagnifyImage.png */; };
+		E3D364DE1C88141F003ACA53 /* AlbumNextStep.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D01C88141F003ACA53 /* AlbumNextStep.png */; };
+		E3D364DF1C88141F003ACA53 /* AlbumNextStep_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D11C88141F003ACA53 /* AlbumNextStep_hover.png */; };
+		E3D364E01C88141F003ACA53 /* AlbumPreviewChooseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D21C88141F003ACA53 /* AlbumPreviewChooseButton.png */; };
+		E3D364E11C88141F003ACA53 /* AlbumPreviewChooseButton_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D31C88141F003ACA53 /* AlbumPreviewChooseButton_hover.png */; };
+		E3D364E21C88141F003ACA53 /* AlbumSeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D41C88141F003ACA53 /* AlbumSeparatorLine.png */; };
+		E3D364E31C88141F003ACA53 /* AssetsPickerLocked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D51C88141F003ACA53 /* AssetsPickerLocked@2x.png */; };
+		E3D364E41C88141F003ACA53 /* ShareBackgroundImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D61C88141F003ACA53 /* ShareBackgroundImage.jpg */; };
+		E3D364E51C88141F003ACA53 /* ShareTopBarBackgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D364D71C88141F003ACA53 /* ShareTopBarBackgroundImage.png */; };
+		E3D364E91C8816B0003ACA53 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D364E81C8816B0003ACA53 /* UIColor+Additions.m */; };
+		E3D364ED1C882C09003ACA53 /* UIImageViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D364EC1C882C09003ACA53 /* UIImageViewButton.m */; };
+		E3D364F11C883E9F003ACA53 /* PickedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D364F01C883E9F003ACA53 /* PickedImageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +132,26 @@
 		E3CDEA011C857460006646BB /* AlbumNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumNotification.h; sourceTree = "<group>"; };
 		E3CDEA021C857EC4006646BB /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		E3CDEA031C857EC4006646BB /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		E3D364CA1C88141F003ACA53 /* AlbumBottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumBottomBar.png; sourceTree = "<group>"; };
+		E3D364CB1C88141F003ACA53 /* AlbumChoosePlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumChoosePlus.png; sourceTree = "<group>"; };
+		E3D364CC1C88141F003ACA53 /* AlbumChoosePlus_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumChoosePlus_hover.png; sourceTree = "<group>"; };
+		E3D364CD1C88141F003ACA53 /* AlbumDeletePrune.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumDeletePrune.png; sourceTree = "<group>"; };
+		E3D364CE1C88141F003ACA53 /* AlbumDeletePrune_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumDeletePrune_hover.png; sourceTree = "<group>"; };
+		E3D364CF1C88141F003ACA53 /* AlbumMagnifyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumMagnifyImage.png; sourceTree = "<group>"; };
+		E3D364D01C88141F003ACA53 /* AlbumNextStep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumNextStep.png; sourceTree = "<group>"; };
+		E3D364D11C88141F003ACA53 /* AlbumNextStep_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumNextStep_hover.png; sourceTree = "<group>"; };
+		E3D364D21C88141F003ACA53 /* AlbumPreviewChooseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumPreviewChooseButton.png; sourceTree = "<group>"; };
+		E3D364D31C88141F003ACA53 /* AlbumPreviewChooseButton_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumPreviewChooseButton_hover.png; sourceTree = "<group>"; };
+		E3D364D41C88141F003ACA53 /* AlbumSeparatorLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumSeparatorLine.png; sourceTree = "<group>"; };
+		E3D364D51C88141F003ACA53 /* AssetsPickerLocked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AssetsPickerLocked@2x.png"; sourceTree = "<group>"; };
+		E3D364D61C88141F003ACA53 /* ShareBackgroundImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ShareBackgroundImage.jpg; sourceTree = "<group>"; };
+		E3D364D71C88141F003ACA53 /* ShareTopBarBackgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareTopBarBackgroundImage.png; sourceTree = "<group>"; };
+		E3D364E71C8816B0003ACA53 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
+		E3D364E81C8816B0003ACA53 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
+		E3D364EB1C882C09003ACA53 /* UIImageViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewButton.h; sourceTree = "<group>"; };
+		E3D364EC1C882C09003ACA53 /* UIImageViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewButton.m; sourceTree = "<group>"; };
+		E3D364EF1C883E9F003ACA53 /* PickedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickedImageCell.h; sourceTree = "<group>"; };
+		E3D364F01C883E9F003ACA53 /* PickedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickedImageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +202,9 @@
 		E370E7B11C7EE2A200A26F03 /* NJKAlbumDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E3D364EA1C882C09003ACA53 /* Vendor */,
+				E3D364E61C8816B0003ACA53 /* Extension */,
+				E3D364C91C88141F003ACA53 /* Resource */,
 				E3CDE9891C85678E006646BB /* Module */,
 				E370E7B51C7EE2A200A26F03 /* AppDelegate.h */,
 				E370E7B61C7EE2A200A26F03 /* AppDelegate.m */,
@@ -331,6 +371,8 @@
 			children = (
 				E3CDE9D01C85678E006646BB /* PickerNavigationController.h */,
 				E3CDE9D11C85678E006646BB /* PickerNavigationController.m */,
+				E3D364EF1C883E9F003ACA53 /* PickedImageCell.h */,
+				E3D364F01C883E9F003ACA53 /* PickedImageCell.m */,
 			);
 			path = PickerNavigator;
 			sourceTree = "<group>";
@@ -341,6 +383,45 @@
 				E3CDEA011C857460006646BB /* AlbumNotification.h */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		E3D364C91C88141F003ACA53 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				E3D364CA1C88141F003ACA53 /* AlbumBottomBar.png */,
+				E3D364CB1C88141F003ACA53 /* AlbumChoosePlus.png */,
+				E3D364CC1C88141F003ACA53 /* AlbumChoosePlus_hover.png */,
+				E3D364CD1C88141F003ACA53 /* AlbumDeletePrune.png */,
+				E3D364CE1C88141F003ACA53 /* AlbumDeletePrune_hover.png */,
+				E3D364CF1C88141F003ACA53 /* AlbumMagnifyImage.png */,
+				E3D364D01C88141F003ACA53 /* AlbumNextStep.png */,
+				E3D364D11C88141F003ACA53 /* AlbumNextStep_hover.png */,
+				E3D364D21C88141F003ACA53 /* AlbumPreviewChooseButton.png */,
+				E3D364D31C88141F003ACA53 /* AlbumPreviewChooseButton_hover.png */,
+				E3D364D41C88141F003ACA53 /* AlbumSeparatorLine.png */,
+				E3D364D51C88141F003ACA53 /* AssetsPickerLocked@2x.png */,
+				E3D364D61C88141F003ACA53 /* ShareBackgroundImage.jpg */,
+				E3D364D71C88141F003ACA53 /* ShareTopBarBackgroundImage.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		E3D364E61C8816B0003ACA53 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E3D364E71C8816B0003ACA53 /* UIColor+Additions.h */,
+				E3D364E81C8816B0003ACA53 /* UIColor+Additions.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E3D364EA1C882C09003ACA53 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E3D364EB1C882C09003ACA53 /* UIImageViewButton.h */,
+				E3D364EC1C882C09003ACA53 /* UIImageViewButton.m */,
+			);
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,8 +527,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D364DE1C88141F003ACA53 /* AlbumNextStep.png in Resources */,
+				E3D364E21C88141F003ACA53 /* AlbumSeparatorLine.png in Resources */,
+				E3D364DB1C88141F003ACA53 /* AlbumDeletePrune.png in Resources */,
+				E3D364DD1C88141F003ACA53 /* AlbumMagnifyImage.png in Resources */,
+				E3D364E01C88141F003ACA53 /* AlbumPreviewChooseButton.png in Resources */,
+				E3D364D81C88141F003ACA53 /* AlbumBottomBar.png in Resources */,
+				E3D364E31C88141F003ACA53 /* AssetsPickerLocked@2x.png in Resources */,
+				E3D364DA1C88141F003ACA53 /* AlbumChoosePlus_hover.png in Resources */,
 				E370E7C21C7EE2A300A26F03 /* LaunchScreen.storyboard in Resources */,
+				E3D364D91C88141F003ACA53 /* AlbumChoosePlus.png in Resources */,
 				E370E7BF1C7EE2A300A26F03 /* Assets.xcassets in Resources */,
+				E3D364E51C88141F003ACA53 /* ShareTopBarBackgroundImage.png in Resources */,
+				E3D364E11C88141F003ACA53 /* AlbumPreviewChooseButton_hover.png in Resources */,
+				E3D364DF1C88141F003ACA53 /* AlbumNextStep_hover.png in Resources */,
+				E3D364E41C88141F003ACA53 /* ShareBackgroundImage.jpg in Resources */,
+				E3D364DC1C88141F003ACA53 /* AlbumDeletePrune_hover.png in Resources */,
 				E370E7BD1C7EE2A300A26F03 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,12 +573,14 @@
 				E3CDE9DE1C85678E006646BB /* BaseAssetPreviewCell.m in Sources */,
 				E3CDE9E41C85678E006646BB /* BaseAssetChooseController.m in Sources */,
 				E3CDE9E91C85678E006646BB /* OldAlbumCell.m in Sources */,
+				E3D364E91C8816B0003ACA53 /* UIColor+Additions.m in Sources */,
 				E3CDE9F81C856AA9006646BB /* VIPhotoView.m in Sources */,
 				E3CDE9EB1C85678E006646BB /* OldAssetPreviewCell.m in Sources */,
 				E370E7BA1C7EE2A200A26F03 /* ViewController.m in Sources */,
 				E3CDE9E51C85678E006646BB /* BaseAssetPreviewController.m in Sources */,
 				E3CDE9D71C85678E006646BB /* AssetChooseController.m in Sources */,
 				E3CDE9ED1C85678E006646BB /* OldAlbumChooseController.m in Sources */,
+				E3D364ED1C882C09003ACA53 /* UIImageViewButton.m in Sources */,
 				E3CDE9D41C85678E006646BB /* AssetPreviewCell.m in Sources */,
 				E3CDE9DD1C85678E006646BB /* BaseAssetCell.m in Sources */,
 				E3CDE9E31C85678E006646BB /* BaseAlbumChooseController.m in Sources */,
@@ -497,6 +594,7 @@
 				E3CDE9D21C85678E006646BB /* AlbumCell.m in Sources */,
 				E3CDE9EF1C85678E006646BB /* PickerNavigationController.m in Sources */,
 				E3CDE9DB1C85678E006646BB /* AssetPreviewController.m in Sources */,
+				E3D364F11C883E9F003ACA53 /* PickedImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,12 @@
 //
 
 #import "BaseAlbumCell.h"
+#import "UIColor+Additions.h"
 
 @interface BaseAlbumCell()
 
 @property (nonatomic, strong) UILabel *detailLabel;
+@property (nonatomic, strong) UIImageView *separatorLineImageView;
 
 @end
 
@@ -24,10 +26,13 @@
 }
 
 - (void)initUI {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.coverImageView];
-    [self addSubview:self.detailLabel];
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    [self.contentView addSubview:self.coverImageView];
+    [self.contentView addSubview:self.detailLabel];
+    [self.contentView addSubview:self.separatorLineImageView];
 }
 
 - (void)configCellWithCoverImage:(UIImage *)coverImage
@@ -36,10 +41,10 @@
     self.coverImageView.image = coverImage;
     self.albumTitle = title;
     
-    NSMutableAttributedString *detailAttributedString = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]}];
+    NSMutableAttributedString *detailAttributedString = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17], NSForegroundColorAttributeName : [UIColor colorWithRGBHexString:@"ffffff"]}];
     if (imageCount) {
         [detailAttributedString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\n"]];
-        [detailAttributedString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", @(imageCount)] attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14] , NSForegroundColorAttributeName : [UIColor grayColor]}]];
+        [detailAttributedString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", @(imageCount)] attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14], NSForegroundColorAttributeName : [UIColor colorWithRGBHexString:@"dcdcdb"]}]];
     }
     self.detailLabel.attributedText = detailAttributedString;
 }
@@ -59,9 +64,19 @@
     self.detailLabel.frame = self.contentView.bounds;
     [self.detailLabel sizeToFit];
     self.detailLabel.frame = CGRectMake(CGRectGetMaxY(self.coverImageView.frame) + detailLabelPedding, (CGRectGetHeight(self.frame) - CGRectGetHeight(self.detailLabel.frame)) * 0.5, CGRectGetWidth(self.detailLabel.frame), CGRectGetHeight(self.detailLabel.frame));
+    
+    self.separatorLineImageView.frame = CGRectMake(0, self.contentView.bounds.size.height - 1, self.contentView.bounds.size.width, 1);
 }
 
 #pragma mark - Setter & Getter
+
+- (UIImageView *)separatorLineImageView {
+//    _separatorLineImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AlbumSeparatorLine"]];
+//    return _separatorLineImageView;
+    UIImageView *separatorLineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 86 - 1, self.contentView.bounds.size.width, 1)];
+    separatorLineImageView.image = [UIImage imageNamed:@"AlbumSeparatorLine"];
+    return separatorLineImageView;
+}
 
 - (UIImageView *)coverImageView {
     if (!_coverImageView) {

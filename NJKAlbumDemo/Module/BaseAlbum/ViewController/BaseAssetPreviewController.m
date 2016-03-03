@@ -24,7 +24,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.view addSubview:self.browserCollectionView];
-    [self initNavigationBar];
+//    [self initNavigationBar];
     NSIndexPath *currentIndexPath = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
     [self.browserCollectionView scrollToItemAtIndexPath:currentIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
@@ -69,11 +69,13 @@
 #pragma mark - Setter & Getter
 
 - (UICollectionViewFlowLayout *)flowLayout {
-    CGFloat pedding = 10;
+    PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
+    UIEdgeInsets insets = navigationController.contentViewInsets;
+    CGFloat pedding = 0;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    [flowLayout setItemSize:CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+    [flowLayout setItemSize:CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - (insets.top + insets.bottom) - (2 * pedding))];
     [flowLayout setMinimumInteritemSpacing:0];
     [flowLayout setMinimumLineSpacing:0];
     [flowLayout setSectionInset:UIEdgeInsetsMake(pedding, 0, pedding, 0)];
@@ -83,10 +85,15 @@
 - (UICollectionView *)browserCollectionView {
     if (!_browserCollectionView) {
         _browserCollectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:[self flowLayout]];
+        _browserCollectionView.backgroundColor = [UIColor clearColor];
         _browserCollectionView.dataSource = self;
         _browserCollectionView.delegate = self;
         _browserCollectionView.pagingEnabled = YES;
         _browserCollectionView.showsHorizontalScrollIndicator = NO;
+        
+        PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
+        UIEdgeInsets insets = navigationController.contentViewInsets;
+        _browserCollectionView.contentInset = UIEdgeInsetsMake(insets.top, insets.left, insets.bottom, insets.right);
     }
     return _browserCollectionView;
 }

@@ -12,16 +12,11 @@
 #import "AssetPreviewController.h"
 #import "AlbumNotification.h"
 
-#define SYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
-#define SCREEN_WIDTH self.view.bounds.size.width
-#define SCREEN_HEIGHT self.view.bounds.size.height
-#define SCREEN_SCALE [UIScreen mainScreen].scale
-
 @import PhotosUI;
 
 #define CELL_IDENTIFIER @"cellIdentifier"
 
-@interface AssetChooseController () <AlbumNotificationPoster>
+@interface AssetChooseController () <AlbumNotificationPoster, AssetCellDelegate, AlbumNotificationPoster>
 @property (nonatomic, strong) PHFetchResult *assetsFetchResults;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
 @property (nonatomic, strong) UIImage *pickedImage;
@@ -81,6 +76,7 @@ static CGSize AssetGridThumbnailSize;
 
 - (AssetCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AssetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
+    cell.delegate = self;
     cell.tag = indexPath.row;
     
     PHAsset *asset = self.assetsFetchResults[indexPath.item];
@@ -100,11 +96,16 @@ static CGSize AssetGridThumbnailSize;
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self handleImageWithIndexPath:indexPath];
+}
+
+#pragma mark - AssetCellDelegate
+
+- (void)assetsCell:(BaseAssetCell *)cell didClickTopRightButton:(UIButton *)sender {
     AssetPreviewController *assetPreviewController = [[AssetPreviewController alloc] init];
     assetPreviewController.assetsFetchResults = self.assetsFetchResults;
-    assetPreviewController.currentIndex = indexPath.row;
+    assetPreviewController.currentIndex = [self.imageCollectionView indexPathForCell:cell].row;
     [self.navigationController pushViewController:assetPreviewController animated:YES];
-    [self handleImageWithIndexPath:indexPath];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -118,8 +119,6 @@ static CGSize AssetGridThumbnailSize;
 - (void)postNotificationWithObject:(id)object {
     [[NSNotificationCenter defaultCenter] postNotificationName:ALBUM_DID_PICK_IMAGE_NOTIFICATION object:object];
 }
-
-#pragma mark - Actions
 
 #pragma mark - Private Method
 
@@ -137,7 +136,7 @@ static CGSize AssetGridThumbnailSize;
 - (void)handleImageWithIndexPath:(NSIndexPath *)indexPath {
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    [options setSynchronous:NO]; // called exactly once
+    [options setSynchronous:YES];
     PHAsset *asset = self.assetsFetchResults[indexPath.row];
     __weak __typeof(self)weakSelf = self;
     [[PHCachingImageManager defaultManager] requestImageForAsset:asset

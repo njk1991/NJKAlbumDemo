@@ -9,9 +9,6 @@
 #import "AssetPreviewController.h"
 #import "AssetPreviewCell.h"
 
-#define SCREEN_WIDTH self.view.bounds.size.width
-#define SCREEN_HEIGHT self.view.bounds.size.height
-#define SCREEN_SCALE [UIScreen mainScreen].scale
 #define CELL_IDENTIFIER @"cellIdentifier"
 
 @interface AssetPreviewController ()

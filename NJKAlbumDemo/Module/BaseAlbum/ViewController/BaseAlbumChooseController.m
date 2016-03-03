@@ -22,12 +22,13 @@
 }
 
 - (void)viewDidLayoutSubviews {
-    self.tableView.frame = self.view.bounds;
+//    self.tableView.frame = self.view.bounds;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self initNavigationBar];
+    [self configTableViewInsets];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -53,6 +54,17 @@
     self.title = @"相簿";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemAction:)];
 }
+
+- (void)configTableViewInsets {
+    CGFloat navigationBarH = 0;
+    if (self.navigationController.navigationBar) {
+        navigationBarH = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    }
+    PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
+    UIEdgeInsets insets = navigationController.contentViewInsets;
+    self.tableView.contentInset = UIEdgeInsetsMake(navigationBarH + insets.top, insets.left, insets.bottom, insets.right);
+}
+
 #pragma mark - UIBarButtonItem Action
 
 - (void)rightBarButtonItemAction:(id)sender {
@@ -74,11 +86,21 @@
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        
         UIView *hiddenView =[ [UIView alloc]init];
         hiddenView.backgroundColor = [UIColor clearColor];
         [_tableView setTableFooterView:hiddenView];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
+        
+//        CGFloat navigationBarH = 0;
+//        if (self.navigationController.navigationBar) {
+//            navigationBarH = CGRectGetHeight(self.navigationController.navigationBar.frame);
+//        }
+//        PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
+//        UIEdgeInsets insets = navigationController.contentViewInsets;
+//        _tableView.contentInset = UIEdgeInsetsMake(navigationBarH + insets.top, insets.left, insets.bottom, insets.right);
     }
     return _tableView;
 }

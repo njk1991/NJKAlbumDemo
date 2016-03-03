@@ -19,11 +19,13 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+//        self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = YES;
         self.clipsToBounds = YES;
     }
     return self;
 }
+
 #pragma mark - Setter & Getter
 
 - (void)setContentImage:(UIImage *)contentImage {
