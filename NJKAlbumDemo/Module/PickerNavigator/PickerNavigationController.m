@@ -94,7 +94,7 @@
             [self.pickedImageArray addObject:image];
             self.pickedCountLabel.text = [NSString stringWithFormat:@"%@",@(self.pickedImageArray.count)];
             [self.pickedImageCollectionView reloadData];
-            NSLog(@"%@",self.pickedImageArray);
+            [self scrollToNewestItem];
         }
     } else {
         NSLog(@"%@",image);
@@ -107,13 +107,20 @@
     NSIndexPath *indexPath = [self.pickedImageCollectionView indexPathForCell:cell];
     NSInteger index = indexPath.row;
     [self.pickedImageArray removeObjectAtIndex:index];
-    [self.pickedImageCollectionView reloadData];
+    [self.pickedImageCollectionView deleteItemsAtIndexPaths:@[indexPath]];
 }
 
 #pragma mark - Action
 
 - (void)nextStepAction:(id)sender {
     NSLog(@"%@",self.pickedImageArray);
+}
+
+#pragma mark - Private Method
+
+- (void)scrollToNewestItem {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.pickedImageArray.count - 1 inSection:0];
+    [self.pickedImageCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 #pragma mark - Setter & Getter

@@ -10,6 +10,8 @@
 
 @interface BaseAssetPreviewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
 
+@property (nonatomic, strong) UIButton *chooseButton;
+
 @end
 
 @implementation BaseAssetPreviewController
@@ -24,6 +26,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.view addSubview:self.browserCollectionView];
+    [self.view addSubview:self.chooseButton];
 //    [self initNavigationBar];
     NSIndexPath *currentIndexPath = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
     [self.browserCollectionView scrollToItemAtIndexPath:currentIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
@@ -69,8 +72,7 @@
 #pragma mark - Setter & Getter
 
 - (UICollectionViewFlowLayout *)flowLayout {
-    PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
-    UIEdgeInsets insets = navigationController.contentViewInsets;
+    UIEdgeInsets insets = [self viewInsets];
     CGFloat pedding = 0;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -91,11 +93,27 @@
         _browserCollectionView.pagingEnabled = YES;
         _browserCollectionView.showsHorizontalScrollIndicator = NO;
         
-        PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
-        UIEdgeInsets insets = navigationController.contentViewInsets;
+        UIEdgeInsets insets = [self viewInsets];
         _browserCollectionView.contentInset = UIEdgeInsetsMake(insets.top, insets.left, insets.bottom, insets.right);
     }
     return _browserCollectionView;
+}
+
+- (UIButton *)chooseButton {
+    if (!_chooseButton) {
+        CGFloat buttonWidth = 50;
+        CGFloat rightInset = 8;
+        CGFloat bottomInset = 19;
+        
+        UIEdgeInsets insets = [self viewInsets];
+        
+        UIButton *chooseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        chooseButton.frame = CGRectMake(self.view.bounds.size.width - (rightInset + buttonWidth), self.view.bounds.size.height - (bottomInset + buttonWidth + insets.bottom), buttonWidth, buttonWidth);
+        [chooseButton setImage:[UIImage imageNamed:@"AlbumChoosePlus"] forState:UIControlStateNormal];
+        [chooseButton setImage:[UIImage imageNamed:@"AlbumChoosePlus_hover"] forState:UIControlStateHighlighted];
+        _chooseButton = chooseButton;
+    }
+    return _chooseButton;
 }
 
 @end

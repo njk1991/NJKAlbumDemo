@@ -56,14 +56,12 @@
 }
 
 - (void)configCollectionViewInsets {
-    PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
-    UIEdgeInsets insets = navigationController.contentViewInsets;
+    UIEdgeInsets insets = [self viewInsets];
     self.imageCollectionView.contentInset = UIEdgeInsetsMake(insets.top, insets.left, insets.bottom, insets.right);
 }
 
 - (void)scrollToNewestItem {
-    PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
-    UIEdgeInsets insets = navigationController.contentViewInsets;
+    UIEdgeInsets insets = [self viewInsets];
     [self.imageCollectionView setContentOffset:(self.imageCollectionView.contentSize.height > self.imageCollectionView.frame.size.height) ? CGPointMake(0, self.imageCollectionView.contentSize.height - self.imageCollectionView.frame.size.height + (insets.top + insets.bottom)) : CGPointZero animated:NO];
 }
 

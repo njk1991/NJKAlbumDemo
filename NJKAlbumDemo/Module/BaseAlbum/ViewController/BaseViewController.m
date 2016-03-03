@@ -48,6 +48,11 @@
     }
 }
 
+- (UIEdgeInsets)viewInsets {
+    PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
+    return navigationController.contentViewInsets;
+}
+
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }

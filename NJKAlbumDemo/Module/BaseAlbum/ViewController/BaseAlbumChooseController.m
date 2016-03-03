@@ -60,8 +60,7 @@
     if (self.navigationController.navigationBar) {
         navigationBarH = CGRectGetHeight(self.navigationController.navigationBar.frame);
     }
-    PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
-    UIEdgeInsets insets = navigationController.contentViewInsets;
+    UIEdgeInsets insets = [self viewInsets];
     self.tableView.contentInset = UIEdgeInsetsMake(navigationBarH + insets.top, insets.left, insets.bottom, insets.right);
 }
 
@@ -94,13 +93,6 @@
         hiddenView.backgroundColor = [UIColor clearColor];
         [_tableView setTableFooterView:hiddenView];
         
-//        CGFloat navigationBarH = 0;
-//        if (self.navigationController.navigationBar) {
-//            navigationBarH = CGRectGetHeight(self.navigationController.navigationBar.frame);
-//        }
-//        PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
-//        UIEdgeInsets insets = navigationController.contentViewInsets;
-//        _tableView.contentInset = UIEdgeInsetsMake(navigationBarH + insets.top, insets.left, insets.bottom, insets.right);
     }
     return _tableView;
 }

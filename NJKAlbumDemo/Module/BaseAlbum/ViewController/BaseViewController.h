@@ -16,4 +16,6 @@
 
 @interface BaseViewController : UIViewController
 
+- (UIEdgeInsets)viewInsets;
+
 @end
