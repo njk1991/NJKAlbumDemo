@@ -32,12 +32,23 @@
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     backgroundImageView.image = [UIImage imageNamed:@"ShareBackgroundImage.jpg"];
     [self.view addSubview:backgroundImageView];
+    
+    CALayer *blackMaskLayer = [CALayer layer];
+    blackMaskLayer.frame = backgroundImageView.bounds;
+    blackMaskLayer.backgroundColor = [[[UIColor blackColor] colorWithAlphaComponent:0.2] CGColor];
+    [backgroundImageView.layer addSublayer:blackMaskLayer];
+    
+    UIImageView *blurBackgroundImageView = [[UIImageView alloc] initWithFrame:backgroundImageView.bounds];
+    blurBackgroundImageView.image = self.blurBackgroundImage;
+    [backgroundImageView addSubview:blurBackgroundImageView];
 }
 
 - (void)initTopBar {
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowOffset = CGSizeZero;
     [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                           UITextAttributeTextColor : [UIColor whiteColor],
-                                                           UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetZero]
+                                                           NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                           NSShadowAttributeName : shadow
                                                            }];
     if (SYSTEM_VERSION >= 7.0) {
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];

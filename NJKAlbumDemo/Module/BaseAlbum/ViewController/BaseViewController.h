@@ -16,6 +16,8 @@
 
 @interface BaseViewController : UIViewController
 
+@property (nonatomic, strong) UIImage *blurBackgroundImage;
+
 - (UIEdgeInsets)viewInsets;
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "BaseAssetPreviewController.h"
+#import "AlbumNotification.h"
+#import "PickerNavigationController.h"
 
-@interface BaseAssetPreviewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
+@interface BaseAssetPreviewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, AlbumNotificationPoster>
 
 @property (nonatomic, strong) UIButton *chooseButton;
 
@@ -69,6 +71,33 @@
     return [scrollView subviews][0];
 }
 
+#pragma mark - BaseAssetPreviewControllerDelegate
+
+- (void)topRightButtonDidClick:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(previewController:didClickChooseButton:)]) {
+        [self.delegate previewController:self didClickChooseButton:sender];
+    }
+}
+
+#pragma mark - AlbumNotificationPoster
+
+- (void)postNotificationWithObject:(id)object {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ALBUM_DID_PICK_IMAGE_NOTIFICATION object:object];
+}
+
+#pragma mark - Action
+
+- (void)chooseButtonDidClick:(UIButton *)sender {
+    UIImage *image = [self handleImage:self.currentImage];
+    [self postNotificationWithObject:image];
+}
+
+#pragma mark - Private Method
+
+- (UIImage *)handleImage:(UIImage *)image {
+    return image;
+}
+
 #pragma mark - Setter & Getter
 
 - (UICollectionViewFlowLayout *)flowLayout {
@@ -106,11 +135,23 @@
         CGFloat bottomInset = 19;
         
         UIEdgeInsets insets = [self viewInsets];
+        UIImage *normalImage = nil;
+        UIImage *highlightedImage = nil;
+        
+        PickerNavigationController *navigationController = (PickerNavigationController *)self.navigationController;
+        if (navigationController.isMultiPicker) {
+            normalImage = [UIImage imageNamed:@"AlbumChoosePlus"];
+            highlightedImage = [UIImage imageNamed:@"AlbumChoosePlus_hover"];
+        } else {
+            normalImage = [UIImage imageNamed:@"AlbumPreviewChooseButton"];
+            highlightedImage = [UIImage imageNamed:@"AlbumPreviewChooseButton_hover"];
+        }
         
         UIButton *chooseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         chooseButton.frame = CGRectMake(self.view.bounds.size.width - (rightInset + buttonWidth), self.view.bounds.size.height - (bottomInset + buttonWidth + insets.bottom), buttonWidth, buttonWidth);
-        [chooseButton setImage:[UIImage imageNamed:@"AlbumChoosePlus"] forState:UIControlStateNormal];
-        [chooseButton setImage:[UIImage imageNamed:@"AlbumChoosePlus_hover"] forState:UIControlStateHighlighted];
+        [chooseButton addTarget:self action:@selector(chooseButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [chooseButton setImage:normalImage forState:UIControlStateNormal];
+        [chooseButton setImage:highlightedImage forState:UIControlStateHighlighted];
         _chooseButton = chooseButton;
     }
     return _chooseButton;

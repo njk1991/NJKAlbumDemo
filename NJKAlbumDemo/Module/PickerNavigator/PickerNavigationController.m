@@ -50,6 +50,8 @@
         [self.bottomView addSubview:self.pickedImageCollectionView];
         [self.infoView addSubview:[self tipLabel]];
         [self.infoView addSubview:[self nextStepButton]];
+    } else {
+        self.maximumPickCount = 1;
     }
 }
 
@@ -92,9 +94,9 @@
     if (self.isMultiPicker) {
         if (self.pickedImageArray.count < self.maximumPickCount) {
             [self.pickedImageArray addObject:image];
-            self.pickedCountLabel.text = [NSString stringWithFormat:@"%@",@(self.pickedImageArray.count)];
             [self.pickedImageCollectionView reloadData];
             [self scrollToNewestItem];
+            [self refreshPickedCountLabel];
         }
     } else {
         NSLog(@"%@",image);
@@ -104,10 +106,31 @@
 #pragma mark - PickedImageCellDelegate
 
 - (void)assetsCell:(PickedImageCell *)cell didClickDeleteButton:(UIButton *)sender {
-    NSIndexPath *indexPath = [self.pickedImageCollectionView indexPathForCell:cell];
-    NSInteger index = indexPath.row;
-    [self.pickedImageArray removeObjectAtIndex:index];
-    [self.pickedImageCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+//    if (self.pickedImageArray.count) {
+//        NSIndexPath *indexPath = [self.pickedImageCollectionView indexPathForCell:cell];
+//        NSInteger index = indexPath.row;
+//        [self.pickedImageArray removeObjectAtIndex:index];
+//#warning 这里待处理 注意 勿删
+//        [self.pickedImageCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+//        [self.pickedImageCollectionView reloadData];
+//        [self refreshPickedCountLabel];
+//    }
+    if (self.pickedImageArray.count) {
+        cell.userInteractionEnabled = NO;
+        NSIndexPath *indexPath = [self.pickedImageCollectionView indexPathForCell:cell];
+        NSInteger index = indexPath.row;
+        __weak __typeof(self)weakSelf = self;
+        [self.pickedImageCollectionView performBatchUpdates:^{
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            [strongSelf.pickedImageArray removeObjectAtIndex:index];
+            [strongSelf.pickedImageCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+        } completion:^(BOOL finished) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            [strongSelf.pickedImageCollectionView reloadData];
+            [strongSelf refreshPickedCountLabel];
+            cell.userInteractionEnabled = YES;
+        }];
+    }
 }
 
 #pragma mark - Action
@@ -117,6 +140,10 @@
 }
 
 #pragma mark - Private Method
+
+- (void)refreshPickedCountLabel {
+    self.pickedCountLabel.text = [NSString stringWithFormat:@"%@",@(self.pickedImageArray.count)];
+}
 
 - (void)scrollToNewestItem {
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.pickedImageArray.count - 1 inSection:0];
@@ -128,9 +155,9 @@
 - (UICollectionViewFlowLayout *)assetsFlowLayout {
     CGFloat navigationBarH = 0;
     CGFloat minimumInteritemSpacing = 0;
-    CGFloat minimumLineSpacing = 10;
-    CGFloat itemWidth = 78.5;
-    CGFloat topInset = 9.5;
+    CGFloat minimumLineSpacing = 0;
+    CGFloat itemWidth = 88;
+    CGFloat topInset = 0;
     CGFloat bottomInset = 5;
     
     if (self.navigationController.navigationBar) {

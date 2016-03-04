@@ -59,12 +59,15 @@
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     [options setSynchronous:NO];
     PHAsset *asset = self.assetsFetchResults[indexPath.row];
+    __weak __typeof(self)weakSelf = self;
     [[PHCachingImageManager defaultManager] requestImageForAsset:asset
-                            targetSize:CGSizeMake(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE)
-                           contentMode:PHImageContentModeAspectFit
-                               options:options
-                         resultHandler:^(UIImage *result, NSDictionary *info)
+                                                      targetSize:CGSizeMake(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE)
+                                                     contentMode:PHImageContentModeAspectFit
+                                                         options:options
+                                                   resultHandler:^(UIImage *result, NSDictionary *info)
      {
+         __strong __typeof(weakSelf)strongSelf = weakSelf;
+         strongSelf.currentImage = result;
          cell.contentImage = result;
      }];
     return cell;

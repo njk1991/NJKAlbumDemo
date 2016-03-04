@@ -38,18 +38,20 @@
 
 - (IBAction)albumButtonDidClick:(UIButton *)sender {
     UIViewController *viewController = nil;
+    BOOL multiPicker = YES;
     if ([sender.titleLabel.text isEqualToString:@"Album"]) {
         viewController = [[AlbumChooseController alloc] init];
     } else if ([sender.titleLabel.text isEqualToString:@"OldAlbum"]) {
         viewController = [[OldAlbumChooseController alloc] init];
-    } else if ([sender.titleLabel.text isEqualToString:@"CloudAlbum"]) {
-        
+    } else if ([sender.titleLabel.text isEqualToString:@"SingleAlbum"]) {
+        viewController = [[AlbumChooseController alloc] init];
+        multiPicker = NO;
     }
     if (!viewController) {
         return;
     }
     PickerNavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
-    navigationController.multiPicker = YES;
+    navigationController.multiPicker = multiPicker;
     navigationController.maximumPickCount = 10;
     [self presentViewController:navigationController animated:YES completion:^{
         nil;

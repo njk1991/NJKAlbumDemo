@@ -30,8 +30,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3P-PI-lFz">
-                                <rect key="frame" x="192" y="560" width="84" height="30"/>
-                                <state key="normal" title="CloudAlbum"/>
+                                <rect key="frame" x="192" y="560" width="86" height="30"/>
+                                <state key="normal" title="SingleAlbum"/>
                                 <connections>
                                     <action selector="albumButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tCB-hf-PiW"/>
                                 </connections>

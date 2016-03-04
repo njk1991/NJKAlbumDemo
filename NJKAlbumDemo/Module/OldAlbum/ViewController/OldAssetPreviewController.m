@@ -63,6 +63,7 @@
     UIImage *image = [UIImage imageWithCGImage:currentImageRef
                                          scale:1.0
                                    orientation:(UIImageOrientation)[assetRep orientation]];
+    self.currentImage = image;
     cell.contentImage = image;
     return cell;
 }
