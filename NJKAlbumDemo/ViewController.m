@@ -12,7 +12,7 @@
 #import "AlbumChooseController.h"
 #import "AlbumNotification.h"
 
-@interface ViewController () <AlbumNotificationReciever>
+@interface ViewController () <AlbumNotificationReciever, PickerNavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *pickedImageView;
 
@@ -37,22 +37,15 @@
 }
 
 - (IBAction)albumButtonDidClick:(UIButton *)sender {
-    UIViewController *viewController = nil;
-    BOOL multiPicker = YES;
+    PickerNavigationController *navigationController = nil;
     if ([sender.titleLabel.text isEqualToString:@"Album"]) {
-        viewController = [[AlbumChooseController alloc] init];
-    } else if ([sender.titleLabel.text isEqualToString:@"OldAlbum"]) {
-        viewController = [[OldAlbumChooseController alloc] init];
+        navigationController = [[PickerNavigationController alloc] initWithPickerDelegate:self maximumPickCount:10 multiPicker:YES];
     } else if ([sender.titleLabel.text isEqualToString:@"SingleAlbum"]) {
-        viewController = [[AlbumChooseController alloc] init];
-        multiPicker = NO;
+        navigationController = [[PickerNavigationController alloc] initWithPickerDelegate:self maximumPickCount:1 multiPicker:NO];
     }
-    if (!viewController) {
+    if (!navigationController) {
         return;
     }
-    PickerNavigationController *navigationController = [[PickerNavigationController alloc] initWithRootViewController:viewController];
-    navigationController.multiPicker = multiPicker;
-    navigationController.maximumPickCount = 10;
     [self presentViewController:navigationController animated:YES completion:^{
         nil;
     }];
@@ -62,6 +55,16 @@
     [self dismissViewControllerAnimated:YES completion:^{
         nil;
     }];
+}
+
+#pragma mark - PickerNavigationControllerDelegate
+
+- (void)pickerNavigationController:(PickerNavigationController *)controller didSelectImage:(UIImage *)image {
+    NSLog(@"%@",image);
+}
+
+- (void)pickerNavigationController:(PickerNavigationController *)controller didSelectImagesWithArray:(NSArray *)array {
+    NSLog(@"%@",array);
 }
 
 #pragma mark - AlbumNotificationReciever

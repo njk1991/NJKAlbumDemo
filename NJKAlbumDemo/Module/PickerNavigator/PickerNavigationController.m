@@ -12,7 +12,8 @@
 #import "AlbumNotification.h"
 #import "UIImageViewButton.h"
 #import "UIColor+Additions.h"
-//#import "UIImage+Resize.h"
+#import "AlbumChooseController.h"
+#import "OldAlbumChooseController.h"
 
 #define BOTTOM_VIEW_HEIGHT 142
 #define INFO_VIEW_HEIGHT 49
@@ -30,11 +31,32 @@
 
 @implementation PickerNavigationController
 
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
-    if (self = [super initWithRootViewController:rootViewController]) {
+- (instancetype)initWithPickerDelegate:(id<PickerNavigationControllerDelegate>)delegate maximumPickCount:(NSInteger)count multiPicker:(BOOL)isMultiPicker {
+    UIViewController *viewController = nil;
+    if (SYSTEM_VERSION >= 8.0) {
+        viewController = [[AlbumChooseController alloc] init];
+    } else {
+        viewController = [[OldAlbumChooseController alloc] init];
+    }
+    if (self = [super initWithRootViewController:viewController]) {
+        self.pickerDelegate = delegate;
+        self.multiPicker = isMultiPicker;
+        if (isMultiPicker) {
+            self.maximumPickCount = count;
+        } else {
+            self.maximumPickCount = 1;
+        }
         [self addNotification];
     }
     return self;
+}
+
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
+    return [self initWithPickerDelegate:nil maximumPickCount:1 multiPicker:NO];
+}
+
+- (instancetype)init {
+    return [self initWithPickerDelegate:nil maximumPickCount:1 multiPicker:NO];
 }
 
 - (void)viewDidLoad {
@@ -67,7 +89,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.pickedImageArray.count;
-//    return 5;
 }
 
 - (PickedImageCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,28 +114,23 @@
     UIImage *image = notification.object;
     if (self.isMultiPicker) {
         if (self.pickedImageArray.count < self.maximumPickCount) {
-            [self.pickedImageArray addObject:image];
-            [self.pickedImageCollectionView reloadData];
-            [self scrollToNewestItem];
-            [self refreshPickedCountLabel];
+            if (image) {
+                [self.pickedImageArray addObject:image];
+                [self.pickedImageCollectionView reloadData];
+                [self scrollToNewestItem];
+                [self refreshPickedCountLabel];
+            }
         }
     } else {
-        NSLog(@"%@",image);
+        if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pickerNavigationController:didSelectImage:)]) {
+            [self.pickerDelegate pickerNavigationController:self didSelectImage:image];
+        }
     }
 }
 
 #pragma mark - PickedImageCellDelegate
 
 - (void)assetsCell:(PickedImageCell *)cell didClickDeleteButton:(UIButton *)sender {
-//    if (self.pickedImageArray.count) {
-//        NSIndexPath *indexPath = [self.pickedImageCollectionView indexPathForCell:cell];
-//        NSInteger index = indexPath.row;
-//        [self.pickedImageArray removeObjectAtIndex:index];
-//#warning 这里待处理 注意 勿删
-//        [self.pickedImageCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-//        [self.pickedImageCollectionView reloadData];
-//        [self refreshPickedCountLabel];
-//    }
     if (self.pickedImageArray.count) {
         cell.userInteractionEnabled = NO;
         NSIndexPath *indexPath = [self.pickedImageCollectionView indexPathForCell:cell];
@@ -136,7 +152,9 @@
 #pragma mark - Action
 
 - (void)nextStepAction:(id)sender {
-    NSLog(@"%@",self.pickedImageArray);
+    if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(pickerNavigationController:didSelectImagesWithArray:)]) {
+        [self.pickerDelegate pickerNavigationController:self didSelectImagesWithArray:self.pickedImageArray];
+    }
 }
 
 #pragma mark - Private Method
