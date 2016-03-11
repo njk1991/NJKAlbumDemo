@@ -79,11 +79,15 @@ static CGSize AssetGridThumbnailSize;
     cell.delegate = self;
     cell.tag = indexPath.row;
     
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.synchronous = YES;
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    
     PHAsset *asset = self.assetsFetchResults[indexPath.item];
     [self.imageManager requestImageForAsset:asset
                                  targetSize:AssetGridThumbnailSize
                                 contentMode:PHImageContentModeAspectFill
-                                    options:nil
+                                    options:options
                               resultHandler:^(UIImage *result, NSDictionary *info) {
                                   if (cell.tag == indexPath.row) {
                                       [cell configCellWithImage:result];
@@ -111,6 +115,11 @@ static CGSize AssetGridThumbnailSize;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    __weak __typeof(self)weakSelf = self;
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        __strong __typeof(weakSelf)strongSelf = weakSelf;
+//        [strongSelf updateCachedAssets];
+//    });
     [self updateCachedAssets];
 }
 
@@ -150,6 +159,12 @@ static CGSize AssetGridThumbnailSize;
      }];
 }
 
+- (void)scrollToNewestItemAnimated:(BOOL)animated {
+    if (self.isScrollToNewestItemEnable) {
+        [self.imageCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assetsFetchResults.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:animated];
+    }
+}
+
 #pragma mark  Asset Caching
 
 - (void)resetCachedAssets {
@@ -158,6 +173,7 @@ static CGSize AssetGridThumbnailSize;
 }
 
 - (void)updateCachedAssets {
+    
     BOOL isViewVisible = [self isViewLoaded] && [[self view] window] != nil;
     if (!isViewVisible) { return; }
     
@@ -176,11 +192,14 @@ static CGSize AssetGridThumbnailSize;
         NSMutableArray *addedIndexPaths = [NSMutableArray array];
         NSMutableArray *removedIndexPaths = [NSMutableArray array];
         
+        __weak __typeof(self)weakSelf = self;
         [self computeDifferenceBetweenRect:self.previousPreheatRect andRect:preheatRect removedHandler:^(CGRect removedRect) {
-            NSArray *indexPaths = [self indexPathsForElementsInRect:removedRect];
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            NSArray *indexPaths = [strongSelf indexPathsForElementsInRect:removedRect];
             [removedIndexPaths addObjectsFromArray:indexPaths];
         } addedHandler:^(CGRect addedRect) {
-            NSArray *indexPaths = [self indexPathsForElementsInRect:addedRect];
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            NSArray *indexPaths = [strongSelf indexPathsForElementsInRect:addedRect];
             [addedIndexPaths addObjectsFromArray:indexPaths];
         }];
         
@@ -188,18 +207,75 @@ static CGSize AssetGridThumbnailSize;
         NSArray *assetsToStopCaching = [self assetsAtIndexPaths:removedIndexPaths];
         
         // Update the assets the PHCachingImageManager is caching.
-        [self.imageManager startCachingImagesForAssets:assetsToStartCaching
-                                            targetSize:AssetGridThumbnailSize
-                                           contentMode:PHImageContentModeAspectFill
-                                               options:nil];
-        [self.imageManager stopCachingImagesForAssets:assetsToStopCaching
-                                           targetSize:AssetGridThumbnailSize
-                                          contentMode:PHImageContentModeAspectFill
-                                              options:nil];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+            options.synchronous = YES;
+            options.resizeMode = PHImageRequestOptionsResizeModeFast;
+            
+            [strongSelf.imageManager startCachingImagesForAssets:assetsToStartCaching
+                                                targetSize:AssetGridThumbnailSize
+                                               contentMode:PHImageContentModeAspectFill
+                                                   options:options];
+            [strongSelf.imageManager stopCachingImagesForAssets:assetsToStopCaching
+                                               targetSize:AssetGridThumbnailSize
+                                              contentMode:PHImageContentModeAspectFill
+                                                  options:options];
+        });
+        
         
         // Store the preheat rect to compare against in the future.
         self.previousPreheatRect = preheatRect;
     }
+    
+//    BOOL isViewVisible = [self isViewLoaded] && [[self view] window] != nil;
+//    if (!isViewVisible) { return; }
+//
+//    // The preheat window is twice the height of the visible rect.
+//    CGRect preheatRect = self.imageCollectionView.bounds;
+//    preheatRect = CGRectInset(preheatRect, 0.0f, -0.5f * CGRectGetHeight(preheatRect));
+//    
+//    /*
+//     Check if the collection view is showing an area that is significantly
+//     different to the last preheated area.
+//     */
+//    CGFloat delta = ABS(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect));
+//    if (delta > CGRectGetHeight(self.imageCollectionView.bounds) / 2.0f) {
+//        
+//        // Compute the assets to start caching and to stop caching.
+//        NSMutableArray *addedIndexPaths = [NSMutableArray array];
+//        NSMutableArray *removedIndexPaths = [NSMutableArray array];
+//        
+//        [self computeDifferenceBetweenRect:self.previousPreheatRect andRect:preheatRect removedHandler:^(CGRect removedRect) {
+//            NSArray *indexPaths = [self indexPathsForElementsInRect:removedRect];
+//            [removedIndexPaths addObjectsFromArray:indexPaths];
+//        } addedHandler:^(CGRect addedRect) {
+//            NSArray *indexPaths = [self indexPathsForElementsInRect:addedRect];
+//            [addedIndexPaths addObjectsFromArray:indexPaths];
+//        }];
+//        
+//        NSArray *assetsToStartCaching = [self assetsAtIndexPaths:addedIndexPaths];
+//        NSArray *assetsToStopCaching = [self assetsAtIndexPaths:removedIndexPaths];
+//        
+//        // Update the assets the PHCachingImageManager is caching.
+//        
+//        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+//        options.synchronous = YES;
+//        options.resizeMode = PHImageRequestOptionsResizeModeFast;
+//        
+//        [self.imageManager startCachingImagesForAssets:assetsToStartCaching
+//                                            targetSize:AssetGridThumbnailSize
+//                                           contentMode:PHImageContentModeAspectFill
+//                                               options:options];
+//        [self.imageManager stopCachingImagesForAssets:assetsToStopCaching
+//                                           targetSize:AssetGridThumbnailSize
+//                                          contentMode:PHImageContentModeAspectFill
+//                                              options:options];
+//        
+//        // Store the preheat rect to compare against in the future.
+//        self.previousPreheatRect = preheatRect;
+//    }
 }
 
 - (void)computeDifferenceBetweenRect:(CGRect)oldRect andRect:(CGRect)newRect removedHandler:(void (^)(CGRect removedRect))removedHandler addedHandler:(void (^)(CGRect addedRect))addedHandler {
@@ -251,6 +327,7 @@ static CGSize AssetGridThumbnailSize;
 - (PHCachingImageManager *)imageManager {
     if (!_imageManager) {
         _imageManager = [[PHCachingImageManager alloc] init];
+        _imageManager.allowsCachingHighQualityImages = NO;
     }
     return _imageManager;
 }

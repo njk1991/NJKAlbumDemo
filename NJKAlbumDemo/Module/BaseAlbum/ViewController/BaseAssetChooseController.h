@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *assetsFlowLayout;
 @property (nonatomic, strong) UICollectionView *imageCollectionView;
 @property (nonatomic, strong) NSMutableArray *assetArray;
+@property (nonatomic, assign, getter = isScrollToNewestItemEnable) BOOL scrollToNewestItemEnable;
 
 @end

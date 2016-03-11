@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.scrollToNewestItemEnable = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -29,11 +30,12 @@
 - (void)viewDidLayoutSubviews {
     self.imageCollectionView.frame = self.view.bounds;
     [self configCollectionViewInsets];
-    [self scrollToNewestItem];
+    [self scrollToNewestItemAnimated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self scrollToNewestItemAnimated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -60,9 +62,10 @@
     self.imageCollectionView.contentInset = UIEdgeInsetsMake(insets.top, insets.left, insets.bottom, insets.right);
 }
 
-- (void)scrollToNewestItem {
-    UIEdgeInsets insets = [self viewInsets];
-    [self.imageCollectionView setContentOffset:(self.imageCollectionView.contentSize.height > self.imageCollectionView.frame.size.height) ? CGPointMake(0, self.imageCollectionView.contentSize.height - self.imageCollectionView.frame.size.height + (insets.top + insets.bottom)) : CGPointZero animated:NO];
+- (void)scrollToNewestItemAnimated:(BOOL)animated {
+    if (self.isScrollToNewestItemEnable) {
+        [self.imageCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assetArray.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:animated];
+    }
 }
 
 #pragma mark - UIBarButtonItem Action
